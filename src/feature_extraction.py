@@ -18,7 +18,7 @@ class FeatureExtractor:
             change_wd : Default is False, if you will change the working directory set it to True and 
             use the method change_wd.
             
-            wd : The default working directory, no need to pass if change_wd is False.
+            wd : The default working directory, no need to pass if change_wd_bool is False.
                  It should be set to the location of the src folder. 
                  For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
             
@@ -118,7 +118,7 @@ def get_feature_extractor(change_wd_bool = False, wd = './src', filepath = '../d
         change_wd : Default is False, if you will change the working directory set it to True and 
         use the method change_wd.
         
-        wd : The default working directory, no need to pass if change_wd is False.
+        wd : The default working directory, no need to pass if change_wd_bool is False.
              It should be set to the location of the src folder. 
              For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
         
