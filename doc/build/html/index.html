@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="python3/javascript">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to ECE229 Project&#39;s documentation! &#8212; ECE229 Project 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-visualization.analysis">
+<span id="welcome-to-ece229-project-s-documentation"></span><h1>Welcome to ECE229 Project's documentation!<a class="headerlink" href="#module-visualization.analysis" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="visualization.analysis.FeatureAnalysis">
+<em class="property">class </em><code class="sig-prename descclassname">visualization.analysis.</code><code class="sig-name descname">FeatureAnalysis</code><span class="sig-paren">(</span><em class="sig-param">csv_path</em><span class="sig-paren">)</span><a class="headerlink" href="#visualization.analysis.FeatureAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exposes DataFrames with binned ages <cite>self.df_binned</cite> and encoded labels <cite>self.df_encoded</cite></p>
+<dl class="method">
+<dt id="visualization.analysis.FeatureAnalysis.get_feature_importance">
+<code class="sig-name descname">get_feature_importance</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#visualization.analysis.FeatureAnalysis.get_feature_importance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates feature weights using random forest</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A DataFrame with feature weights</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="visualization.analysis.MaritalAnalysis">
+<em class="property">class </em><code class="sig-prename descclassname">visualization.analysis.</code><code class="sig-name descname">MaritalAnalysis</code><span class="sig-paren">(</span><em class="sig-param">csv_path</em><span class="sig-paren">)</span><a class="headerlink" href="#visualization.analysis.MaritalAnalysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filters unknown marital status types from <cite>self.df</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="visualization.analysis.number_to_day_of_week">
+<code class="sig-prename descclassname">visualization.analysis.</code><code class="sig-name descname">number_to_day_of_week</code><span class="sig-paren">(</span><em class="sig-param">df: Union[pandas.core.frame.DataFrame, pandas.core.series.Series, Iterable]</em><span class="sig-paren">)</span> &#x2192; Union[pandas.core.frame.DataFrame, pandas.core.series.Series, Iterable]<a class="headerlink" href="#visualization.analysis.number_to_day_of_week" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a DataFrame, Series, or Iterable with integers converted to the appropriate abbreviated day of the week.
+0 returns an empty string. Values outside [0 6] will raise an <cite>IndexError</cite>
+:param df: a <cite>pandas.DataFrame</cite> or <cite>pandas.Series</cite> object with integer values ranging from 0 to 6</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="visualization.analysis.number_to_month">
+<code class="sig-prename descclassname">visualization.analysis.</code><code class="sig-name descname">number_to_month</code><span class="sig-paren">(</span><em class="sig-param">df: Union[pandas.core.frame.DataFrame, pandas.core.series.Series, Iterable]</em><span class="sig-paren">)</span> &#x2192; Union[pandas.core.frame.DataFrame, pandas.core.series.Series, Iterable]<a class="headerlink" href="#visualization.analysis.number_to_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a DataFrame, Series, or Iterable with integers converted to the appropriate abbreviated month. 0 returns
+an empty string. Values outside [0 12] will raise an <cite>IndexError</cite>
+:param df: a <cite>pandas.DataFrame</cite> or <cite>pandas.Series</cite> object with integer values ranging from 0 to 12</p>
+</dd></dl>
+
+<span class="target" id="module-src.pre_processing"></span><dl class="class">
+<dt id="src.pre_processing.DfBankAdditional">
+<em class="property">class </em><code class="sig-prename descclassname">src.pre_processing.</code><code class="sig-name descname">DfBankAdditional</code><span class="sig-paren">(</span><em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#src.pre_processing.DfBankAdditional" title="Permalink to this definition">¶</a></dt>
+<dd><p>To be used with the bank-additional dataset from:
+<a class="reference external" href="https://archive.ics.uci.edu/ml/datasets">https://archive.ics.uci.edu/ml/datasets</a>/Bank+Marketing#
+Pass a pandas.DataFrame to the constructor to get started</p>
+<dl class="method">
+<dt id="src.pre_processing.DfBankAdditional.process_all">
+<code class="sig-name descname">process_all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.pre_processing.DfBankAdditional.process_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dataframe is modified in-place, replacing unknown values with np.NaN, false values with <cite>0</cite>, and true
+values with <cite>1</cite>.
+This behavior can be modified by changing the class attribute <cite>mappings</cite></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="src.pre_processing.DfBankAdditional.re_map_column">
+<code class="sig-name descname">re_map_column</code><span class="sig-paren">(</span><em class="sig-param">column: str</em><span class="sig-paren">)</span><a class="headerlink" href="#src.pre_processing.DfBankAdditional.re_map_column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the mapping in the <cite>self.mappings</cite> dict to the column name in <cite>column</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>column</strong> -- name of the <cite>pd.DataFrame</cite> column to re-map</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="src.pre_processing.load_data">
+<code class="sig-prename descclassname">src.pre_processing.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param">path: str</em><span class="sig-paren">)</span> &#x2192; src.pre_processing.DfBankAdditional<a class="headerlink" href="#src.pre_processing.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the csv located at <cite>path</cite>
+:param path: a string path to the bank-additional-full.csv file
+:return: a DfBankAdditional</p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">ECE229 Project</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Group6.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
