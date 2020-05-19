@@ -5,10 +5,12 @@ import calendar
 
 class DfBankAdditional:
     '''
-    To be used with the bank-additional dataset from:
-    https://archive.ics.uci.edu/ml/datasets/Bank+Marketing#
-    Pass a pandas.DataFrame to the constructor to get started
+    To be used with the bank-additional dataset from: https://archive.ics.uci.edu/ml/datasets/Bank+Marketing# Pass a pandas.DataFrame to the constructor to get started
+    
+    :param filepath: file path of bank dataset csv.
+    :type filepath: str
     '''
+    
     NO_INCOME = 'no_income'
     LOWER_INCOME = 'lower_income'
     HIGHER_INCOME = 'higher_income'
@@ -99,6 +101,9 @@ class DfBankAdditional:
     }
 
     def __init__(self, filepath):
+        """
+        Constructor method
+        """
         self.df = pd.DataFrame(filepath)
         
         self.df['job_transformed'] = self.df['job']
@@ -106,9 +111,7 @@ class DfBankAdditional:
         
     def process_all(self):
         '''
-        The dataframe is modified in-place, replacing unknown values with np.NaN, false values with `0`, and true
-        values with `1`.
-        This behavior can be modified by changing the class attribute `mappings`
+        The dataframe is modified in-place, replacing unknown values with np.NaN, false values with `0`, and true values with `1`. This behavior can be modified by changing the class attribute `mappings`
         '''
         for c in self.df.keys():
             if c in self.mappings.keys():
@@ -121,6 +124,7 @@ class DfBankAdditional:
         Applies the mapping in the `self.mappings` dict to the column name in `column`
         
         :param column: name of the `pd.DataFrame` column to re-map
+        :type column: str
         '''
         assert isinstance(column, str)
         for k, v in self.mappings[column].items():
@@ -128,8 +132,7 @@ class DfBankAdditional:
 
     def _validate_all(self):
         '''
-        Checks that our assumptions about the structure of the data are correct. Raises and AssertionError if an
-        unexpected datatype or value is found.
+        Checks that our assumptions about the structure of the data are correct. Raises and AssertionError if an unexpected datatype or value is found.
         '''
         for c in self.df.keys():
             if c in self.mappings.keys():
