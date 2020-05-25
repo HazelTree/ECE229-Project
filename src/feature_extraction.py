@@ -1,4 +1,6 @@
 # Import Python Libraries
+import sys
+sys.path.insert(0, '..')
 import numpy as np
 import pandas as pd
 import os
@@ -44,7 +46,7 @@ class FeatureExtractor:
             self.change_wd()
         
         # import custom pre_processing library
-        import pre_processing as pp
+        import src.pre_processing as pp
             
         # read the data
         bank_data = pp.load_data(self.filepath)
