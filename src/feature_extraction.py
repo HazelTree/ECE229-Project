@@ -162,6 +162,10 @@ def get_feature_extractor(change_wd_bool = False, wd = './src', filepath = '../d
     :return: Returns a FeatureExtractor object.
     :rtype: class:`FeatureExtractor` 
     '''
+    assert isinstance(change_wd_bool, bool)
+    assert isinstance(wd, str)
+    assert isinstance(filepath, str)
+    
     return FeatureExtractor(change_wd_bool, wd, filepath)
 
 
