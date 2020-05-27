@@ -13,7 +13,7 @@ import plotly.express as px
 from plotly.offline import plot
 
 
-from visualization import analysis
+from visualization import analysis  
 # from visualization import plots 
 
 csv_path = 'data/bank-additional-full.csv'
@@ -199,19 +199,15 @@ colors = {
     'background': '#111111',
     'text': '#7FDBFF'
 }
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children = [
+app.layout = html.Div(children = [
     dcc.Tabs(id="tabs", value='tab-1', children=[
         dcc.Tab(label='Visualization', value='tab-1'),
         dcc.Tab(label='Prediction', value='tab-2'),
     ]),
     html.Div(id='tabs-content')
 ])
-@app.callback(Output('tabs-content', 'children'),
-              [Input('tabs', 'value')])
         
-def render_content(tab):
-    if tab == 'tab-1':
-        return html.Div(children =[
+layout_tab_1 = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
@@ -309,8 +305,8 @@ def render_content(tab):
             ])
 
         ])
-    elif tab == 'tab-2':
-        return html.Div(children =[
+
+layout_tab_2 = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
@@ -327,32 +323,39 @@ def render_content(tab):
             style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
             ]),
              
-            html.Div(dash_table.DataTable(
-                        columns=[
-                            {'name': 'Customer ID', 'id': 'customer_id', 'type': 'numeric', 'editable': False},
-                            {'name': 'Age', 'id': 'age', 'type': 'numeric', 'editable': False},
-                            {'name': 'Income', 'id': 'job_transformed', 'type': 'text', 'editable': False},
-                            {'name': 'Previously Contacted', 'id': 'poutcome', 'type': 'text', 'editable': False},
-                            {'name': 'Prediction', 'id': 'pred', 'type': 'numeric', 'editable': False},
-                            {'name': 'Probability of Success', 'id': 'prob_1', 'type': 'numeric', 'editable': False},
-                            {'name': 'Is Called', 'id': 'is_called', 'type': 'numeric', 'editable': True}
-                        ],
-                        data=df.to_dict('records'),
-                        filter_action='native',
+            # html.Div(dash_table.DataTable(
+            #             columns=[
+            #                 {'name': 'Customer ID', 'id': 'customer_id', 'type': 'numeric', 'editable': False},
+            #                 {'name': 'Age', 'id': 'age', 'type': 'numeric', 'editable': False},
+            #                 {'name': 'Income', 'id': 'job_transformed', 'type': 'text', 'editable': False},
+            #                 {'name': 'Previously Contacted', 'id': 'poutcome', 'type': 'text', 'editable': False},
+            #                 {'name': 'Prediction', 'id': 'pred', 'type': 'numeric', 'editable': False},
+            #                 {'name': 'Probability of Success', 'id': 'prob_1', 'type': 'numeric', 'editable': False},
+            #                 {'name': 'Is Called', 'id': 'is_called', 'type': 'numeric', 'editable': True}
+            #             ],
+            #             data=df.to_dict('records'),
+            #             filter_action='native',
                     
-                        style_table={
-                            'height': 400,
-                        },
-                        style_data={
-                            'width': '150px', 'minWidth': '150px', 'maxWidth': '150px',
-                            'overflow': 'hidden',
-                            'textOverflow': 'ellipsis',
-                        }
-                        )                    
-                    )                
+            #             style_table={
+            #                 'height': 400,
+            #             },
+            #             style_data={
+            #                 'width': '150px', 'minWidth': '150px', 'maxWidth': '150px',
+            #                 'overflow': 'hidden',
+            #                 'textOverflow': 'ellipsis',
+            #             }
+            #             )                    
+            #         )                
                 
         ])
 
+@app.callback(Output('tabs-content', 'children'),
+              [Input('tabs', 'value')])
+def render_content(tab):
+    if tab == 'tab-1':
+        return layout_tab_1
+    elif tab == 'tab-2':
+        return layout_tab_2
 
 if __name__ == '__main__':
     app.run_server(debug=True)
