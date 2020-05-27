@@ -12,6 +12,7 @@ import plotly.express as px
 
 
 from visualization import analysis 
+# from visualization import plots 
 
 csv_path = 'data/bank-additional-full.csv'
 my_analysis = analysis.Analysis(csv_path)
@@ -28,7 +29,6 @@ def martial_state_distribution():
 
 
     '''
-
     percents = my_analysis.percentage_of_population('marital')
     v = my_analysis.get_count('marital')['y']
     values = [v[1], v[0], v[2]]
@@ -36,16 +36,138 @@ def martial_state_distribution():
     my_analysis.get_count('marital')
     explode = (0.2, 0, 0)
     fig = px.pie(percents,  values= values, names = labels, 
-                title = 'age of people who are married, divorced and single')
+                title = 'Number of people who are married, divorced and single')
     return fig
 
+def marital_status_probab():
+    marital_status_probab = my_analysis.get_probabilities('marital')
+    data = marital_status_probab
+    data['y'] = data['y']*100
+    fig = px.bar(data, x='marital', y='y',
+                hover_data=data, color='marital',labels={'y':'Probability of Success (%)', 'marital': 'Marital Status'},
+                height=400)
+    return fig
+
+def education_level_distribution():
+    edu_count = my_analysis.get_count('education')
+    edu_success_count = my_analysis.get_success_count('education')
+
+    status=['Dropout', 'illiterate', 'professional.course', 'university.degree']
+
+    fig = go.Figure(data=[
+        go.Bar(name='Not Successful', x=status, y=edu_count['y']-edu_success_count['y']),
+        go.Bar(name='Success', x=status, y=edu_success_count['y'])
+    ])
+    # Change the bar mode
+    fig.update_layout(barmode='stack', xaxis_title="Education Level", yaxis_title="Number of people")
+    return fig
+
+def education_level_prob():
+    edu_prob = my_analysis.get_probabilities('education')
+    data = edu_prob
+    data['y'] = data['y']*100
+    fig = px.bar(data, x='education', y='y',
+                hover_data=data, color='education',labels={'y':'Probability of Success (%)', 'education': 'Education Level'},
+                height=400)
+    return fig
+
+def income_level_distribution():
+    job_count = my_analysis.get_count('job')
+    job_success_count = my_analysis.get_success_count('job')
+    #print(job_count)
+    status=['higher income', 'lower income', 'no income']
+
+    fig = go.Figure(data=[
+        go.Bar(name='Not Successful', x=status, y=job_count['y']-job_success_count['y']),
+        go.Bar(name='Success', x=status, y=job_success_count['y'])
+    ])
+    fig.update_layout(barmode='stack', xaxis_title="Income Level", yaxis_title="Number of people")
+    return fig
+
+def job_prob():
+    job_prob = my_analysis.get_probabilities('job')
+    data = job_prob
+    data['y'] = data['y']*100
+    fig = px.bar(data, x='job', y='y',
+                hover_data=data, color='job',labels={'y':'Probability of Success (%)', 'job': 'Job'},
+                height=400)
+    return fig
+
+def contact_way_distribution():
+    contact_count = my_analysis.get_count('contact')
+    contact_success_count = my_analysis.get_success_count('contact')
+    status=['cellular', 'telephone']
+
+    fig = go.Figure(data=[
+        go.Bar(name='Not Successful', x=status, y=contact_count['y']-contact_success_count['y']),
+        go.Bar(name='Success', x=status, y=contact_success_count['y'])
+    ])
+    # Change the bar mode
+    fig.update_layout(barmode='stack', xaxis_title="Contact type", yaxis_title="Number of people")
+    return fig
+
+def contact_prob():
+    contact_prob = my_analysis.get_probabilities('contact')
+    data = contact_prob
+    data['y'] = data['y']*100
+    fig = px.bar(data, x='contact', y='y',
+                hover_data=data, color='contact',labels={'y':'Probability of Success (%)', 'contact': 'Contact type'},
+                height=400)
+    return fig
+
+def loan_status():
+    loan_count = my_analysis.get_count('loan')
+    loan_success_count = my_analysis.get_success_count('loan')
+    status=['yes', 'no', 'Info Not Available']
+
+    fig = go.Figure(data=[
+        go.Bar(name='Not Successful', x=status, y=loan_count['y']-loan_success_count['y']),
+        go.Bar(name='Success', x=status, y=loan_success_count['y'])
+    ])
+    # Change the bar mode
+    fig.update_layout(barmode='stack', xaxis_title="Do people have a loan?", yaxis_title="Number of people")
+    return fig
+
+def loan_prob():
+    loan_prob = my_analysis.get_probabilities('loan')
+    data = loan_prob
+    data['y'] = data['y']*100
+    fig = px.bar(data, x='loan', y='y',
+                hover_data=data, color='loan',labels={'y':'Probability of Success (%)', 'loan': 'Do people have a loan?'},
+                height=400)
+    return fig
+
+def house_status_distribution():
+    housing_count = my_analysis.get_count('housing')
+    housing_success_count = my_analysis.get_success_count('housing')
+    status=['yes', 'no', 'Info Not Available']
+
+    fig = go.Figure(data=[
+        go.Bar(name='Not Successful', x=status, y=housing_count['y']-housing_success_count['y']),
+        go.Bar(name='Success', x=status, y=housing_success_count['y'])
+    ])
+    # Change the bar mode
+    fig.update_layout(barmode='stack', xaxis_title="Housing Status", yaxis_title="Number of people")
+    return fig
+
+def house_prob():
+    housing_prob = my_analysis.get_probabilities('housing')
+    data = housing_prob
+    data['y'] = data['y']*100
+    fig = px.bar(data, x='housing', y='y',
+                hover_data=data, color='housing',labels={'y':'Probability of Success (%)', 'housing': 'Housig Status'},
+                height=400)
+    return fig
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.config['suppress_callback_exceptions'] = True
-
-app.layout = html.Div([
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
+app.layout = html.Div(style={'backgroundColor': colors['background']}, children = [
     dcc.Tabs(id="tabs", value='tab-1', children=[
         dcc.Tab(label='Visualization', value='tab-1'),
         dcc.Tab(label='Prediction', value='tab-2'),
@@ -58,13 +180,103 @@ app.layout = html.Div([
 def render_content(tab):
     if tab == 'tab-1':
         return html.Div(children =[
-            dcc.Graph(
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
                 id = "martial status",
                 figure = martial_state_distribution()
-            )
+            ) ],
+            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center' }),
 
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial prob",
+                figure = marital_status_probab()
+            )],
+            style={'height': 400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
+            ]),
 
-        ] )
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial status",
+                figure = education_level_distribution()
+            ) ],
+            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial prob",
+                figure = education_level_prob()
+            )],
+            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            ]),
+
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial status",
+                figure = income_level_distribution()
+            ) ],
+            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial prob",
+                figure = job_prob()
+            )],
+            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            ]),
+
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial status",
+                figure = contact_way_distribution()
+            ) ],
+            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial prob",
+                figure = contact_prob()
+            )],
+            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            ]),
+
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial status",
+                figure = loan_status()
+            ) ],
+            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial prob",
+                figure = loan_prob()
+            )],
+            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            ]),
+            
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial status",
+                figure = house_status_distribution()
+            ) ],
+            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+
+            html.Div(children =[
+                dcc.Graph(
+                id = "martial prob",
+                figure = house_prob()
+            )],
+            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            ])
+
+        ])
     elif tab == 'tab-2':
         return html.Div([
             html.H3('Tab content 2')
