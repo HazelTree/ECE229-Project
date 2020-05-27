@@ -323,29 +323,29 @@ layout_tab_2 = html.Div(children =[
             style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
             ]),
              
-            # html.Div(dash_table.DataTable(
-            #             columns=[
-            #                 {'name': 'Customer ID', 'id': 'customer_id', 'type': 'numeric', 'editable': False},
-            #                 {'name': 'Age', 'id': 'age', 'type': 'numeric', 'editable': False},
-            #                 {'name': 'Income', 'id': 'job_transformed', 'type': 'text', 'editable': False},
-            #                 {'name': 'Previously Contacted', 'id': 'poutcome', 'type': 'text', 'editable': False},
-            #                 {'name': 'Prediction', 'id': 'pred', 'type': 'numeric', 'editable': False},
-            #                 {'name': 'Probability of Success', 'id': 'prob_1', 'type': 'numeric', 'editable': False},
-            #                 {'name': 'Is Called', 'id': 'is_called', 'type': 'numeric', 'editable': True}
-            #             ],
-            #             data=df.to_dict('records'),
-            #             filter_action='native',
+             html.Div(dash_table.DataTable(
+                         columns=[
+                             {'name': 'Customer ID', 'id': 'customer_id', 'type': 'numeric', 'editable': False},
+                             {'name': 'Age', 'id': 'age', 'type': 'numeric', 'editable': False},
+                             {'name': 'Income', 'id': 'job_transformed', 'type': 'text', 'editable': False},
+                             {'name': 'Previously Contacted', 'id': 'poutcome', 'type': 'text', 'editable': False},
+                             {'name': 'Prediction', 'id': 'pred', 'type': 'numeric', 'editable': False},
+                             {'name': 'Probability of Success', 'id': 'prob_1', 'type': 'numeric', 'editable': False},
+                             {'name': 'Is Called', 'id': 'is_called', 'type': 'numeric', 'editable': True}
+                         ],
+                         data=df.to_dict('records'),
+                         filter_action='native',
                     
-            #             style_table={
-            #                 'height': 400,
-            #             },
-            #             style_data={
-            #                 'width': '150px', 'minWidth': '150px', 'maxWidth': '150px',
-            #                 'overflow': 'hidden',
-            #                 'textOverflow': 'ellipsis',
-            #             }
-            #             )                    
-            #         )                
+                         style_table={
+                             'height': 400,
+                         },
+                         style_data={
+                             'width': '150px', 'minWidth': '150px', 'maxWidth': '150px',
+                             'overflow': 'hidden',
+                             'textOverflow': 'ellipsis',
+                         }
+                         )                    
+                     )                
                 
         ])
 

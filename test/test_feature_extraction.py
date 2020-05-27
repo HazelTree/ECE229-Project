@@ -1,9 +1,9 @@
 import pytest
 import sys
-
+sys.path.insert(0, '..')
 import pandas as pd
-from feature_extraction import *
-import feature_extraction as feature_ex
+from src.feature_extraction import *
+import src.feature_extraction as feature_ex
 
 feature_extraction = FeatureExtractor()
 def test_change_wd():

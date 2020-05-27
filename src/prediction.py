@@ -1,4 +1,5 @@
 import sys
+sys.path.insert(0, '..')
 import numpy as np
 import pandas as pd
 import os
@@ -47,7 +48,7 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     
     # Import feature extraction code
     try:
-        import feature_extraction as feat
+        import src.feature_extraction as feat
     except:
         os.chdir(wd)
         import feature_extraction as feat
