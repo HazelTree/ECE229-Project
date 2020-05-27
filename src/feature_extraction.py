@@ -1,5 +1,6 @@
 # Import Python Libraries
 import sys
+sys.path.insert(0, '..')
 import numpy as np
 import pandas as pd
 import os
@@ -13,7 +14,7 @@ class FeatureExtractor:
     :param change_wd: Default is False, if you will change the working directory set it to True and 
     use the method change_wd.
     :type change_wd: bool, optional
-    :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the git folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/'
+    :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
     :type wd: str, optional
     :param file_path: Location of the csv data file. Pass the location of 'bank-additional-full.csv' if you would like to change the default data path.
     :type file_path: str, optional
@@ -28,14 +29,14 @@ class FeatureExtractor:
         
     def change_wd(self):
         '''
-        Change the working directory. This method changes the working directory of the repo. It should always be set to git folder.
+        Change the working directory. This method changes the working directory of the repo. It should always be set to src folder.
         '''
-        # If the working directory is not git folder, change it
+        # If the working directory is not src folder, change it
         os.chdir(self.wd)
         
     def load_preprocessed_data(self):
         '''
-        Imports pre_processing library from git folder and loads the preprocessed data. If the change_wd option is True in the class constructor then imports pre_processing library from the new location else uses the default working directory. While reading the data uses the filepath string that was passed in the class constructor.
+        Imports pre_processing library from src folder and loads the preprocessed data. If the change_wd option is True in the class constructor then imports pre_processing library from the new location else uses the default working directory. While reading the data uses the filepath string that was passed in the class constructor.
         
         :return: 'df' which is the preprocessed Pandas dataframe.
         :rtype: pandas.core.frame.DataFrame
@@ -45,7 +46,7 @@ class FeatureExtractor:
             self.change_wd()
         
         # import custom pre_processing library
-        import pre_processing as pp
+        from src import pre_processing as pp
             
         # read the data
         bank_data = pp.load_data(self.filepath)
@@ -159,7 +160,7 @@ def get_feature_extractor(change_wd_bool = False, wd = '', filepath = 'data/bank
     :param change_wd_bool: Default is False, if you will change the working directory set it to True and 
     use the method change_wd.
     :type change_wd: bool, optional
-    :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the git folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/'
+    :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
     :type wd: str, optional
     :param file_path: Location of the csv data file. Pass the location of 'bank-additional-full.csv' if you would like to change the default data path.
     :type file_path: str, optional
