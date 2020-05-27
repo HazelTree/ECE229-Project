@@ -5,18 +5,30 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 import pandas as pd
+import numpy as np
 from textwrap import dedent as d
 import plotly.graph_objs as go
 import plotly.figure_factory as ff
 import plotly.express as px
+from plotly.offline import plot
 
 
-from visualization import analysis 
+from visualization import analysis
 # from visualization import plots 
 
 csv_path = 'data/bank-additional-full.csv'
 my_analysis = analysis.Analysis(csv_path)
 myList, labels = my_analysis.map_age()
+
+# Read and modify prediction data
+predictions = pd.read_csv('data/predictions.csv')
+
+df = predictions.copy()
+
+df = df[['customer_id', 'age', 'job_transformed', 'poutcome', 'pred', 'prob_1']]  # prune columns for example
+df.sort_values(by = ['prob_1'], ascending = False, inplace = True)
+df['prob_1'] = np.around(df['prob_1'], decimals = 2)
+df['is_called'] = 0
 
 def martial_state_distribution():
     '''
@@ -159,6 +171,26 @@ def house_prob():
                 height=400)
     return fig
 
+def prediction_pie_chart():
+    '''
+    Plot predicted telecaller success ratios on the test data.
+    '''
+    fig = px.pie(predictions, 
+                 values=[1 for i in range(len(predictions))], 
+                 names= np.where(predictions['pred'] == 1, 'Purchase', 'No Purchase'), 
+                 title='Overall Telemarketing Success Predictions')
+    return fig
+
+def predicted_prob_hist():
+    '''
+    Plot the histogram of the predicted probabilities.
+    '''
+    fig = px.histogram(predictions, 
+                       x="prob_1", 
+                       nbins=5, 
+                       labels = {'prob_1' : 'Success Probabilty'},
+                       title='Histogram of Success Probabilities')
+    return fig
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -278,8 +310,47 @@ def render_content(tab):
 
         ])
     elif tab == 'tab-2':
-        return html.Div([
-            html.H3('Tab content 2')
+        return html.Div(children =[
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
+                id = "prediction_pie_chart",
+                figure = prediction_pie_chart()
+            ) ],
+            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+
+            html.Div(children =[
+                dcc.Graph(
+                id = "predicted_prob_hist",
+                figure = predicted_prob_hist()
+            )],
+            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            ]),
+             
+            html.Div(dash_table.DataTable(
+                        columns=[
+                            {'name': 'Customer ID', 'id': 'customer_id', 'type': 'numeric', 'editable': False},
+                            {'name': 'Age', 'id': 'age', 'type': 'numeric', 'editable': False},
+                            {'name': 'Income', 'id': 'job_transformed', 'type': 'text', 'editable': False},
+                            {'name': 'Previously Contacted', 'id': 'poutcome', 'type': 'text', 'editable': False},
+                            {'name': 'Prediction', 'id': 'pred', 'type': 'numeric', 'editable': False},
+                            {'name': 'Probability of Success', 'id': 'prob_1', 'type': 'numeric', 'editable': False},
+                            {'name': 'Is Called', 'id': 'is_called', 'type': 'numeric', 'editable': True}
+                        ],
+                        data=df.to_dict('records'),
+                        filter_action='native',
+                    
+                        style_table={
+                            'height': 400,
+                        },
+                        style_data={
+                            'width': '150px', 'minWidth': '150px', 'maxWidth': '150px',
+                            'overflow': 'hidden',
+                            'textOverflow': 'ellipsis',
+                        }
+                        )                    
+                    )                
+                
         ])
 
 

@@ -7,8 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 
 import sys
-sys.path.insert(0, '..')
-from src import pre_processing as pp
+import pre_processing as pp
 
 
 class Analysis:
