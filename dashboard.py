@@ -199,46 +199,80 @@ colors = {
     'background': '#111111',
     'text': '#7FDBFF'
 }
+
+tab_style = {
+    'fontWeight': 'bold'
+}
+vis_tab_style = {
+    'borderBottom': '1px solid #d6d6d6',
+    'padding': '15px',
+}
+
+tab_selected_style = {
+    'borderTop': '1px solid #d6d6d6',
+    'borderBottom': '1px solid #d6d6d6',
+    'backgroundColor': '#119DFF',
+    'color': 'white',
+    'padding': '15px'
+}
 app.layout = html.Div(children = [
     dcc.Tabs(id="tabs", value='tab-1', children=[
-        dcc.Tab(label='Visualization', value='tab-1'),
-        dcc.Tab(label='Prediction', value='tab-2'),
+        dcc.Tab(label='Visualization', value='tab-1', style=tab_style),
+        dcc.Tab(label='Prediction', value='tab-2', style=tab_style),
     ]),
     html.Div(id='tabs-content')
 ])
-        
-layout_tab_1 = html.Div(children =[
+layout_tab_1  = html.Div(children = [
+    dcc.Tabs(id = "vis-tabs", value = "vistab", vertical=True, parent_style={'float': 'left','width': '40'},children =[
+        dcc.Tab(label='Martial Status', value='tab-3', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Educational Level', value='tab-4', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Income&Job', value='tab-5', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Contact Type', value='tab-6', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Loan Status', value='tab-7', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Housing Status', value='tab-8', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Prediction Overview', value='tab-9', style=vis_tab_style, selected_style=tab_selected_style),
+    ]),
+    html.Div(id='vis-tabs-content',style={'float': 'right'})
+])
+
+martial_status_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
                 id = "martial status",
                 figure = martial_state_distribution()
             ) ],
-            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center' }),
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center' }),
 
             html.Div(children =[
                 dcc.Graph(
                 id = "martial prob",
                 figure = marital_status_probab()
             )],
-            style={'height': 400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
+            style={'height': 400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
             ]),
 
+        ])
+educational_Level_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
                 id = "martial status",
                 figure = education_level_distribution()
             ) ],
-            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
                 id = "martial prob",
                 figure = education_level_prob()
             )],
-            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
             ]),
+
+])
+
+income_vis = html.Div(children =[
 
             html.Div([
             html.Div(children =[
@@ -246,82 +280,116 @@ layout_tab_1 = html.Div(children =[
                 id = "martial status",
                 figure = income_level_distribution()
             ) ],
-            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
                 id = "martial prob",
                 figure = job_prob()
             )],
-            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
             ]),
 
+])
+
+contact_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
                 id = "martial status",
                 figure = contact_way_distribution()
             ) ],
-            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
                 id = "martial prob",
                 figure = contact_prob()
             )],
-            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
             ]),
 
+])
+
+loan_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
                 id = "martial status",
                 figure = loan_status()
             ) ],
-            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
                 id = "martial prob",
                 figure = loan_prob()
             )],
-            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
             ]),
-            
+
+])
+house_vis = html.Div(children =[            
             html.Div([
             html.Div(children =[
                 dcc.Graph(
                 id = "martial status",
                 figure = house_status_distribution()
             ) ],
-            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
                 id = "martial prob",
                 figure = house_prob()
             )],
-            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
-            ])
+            style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
+            ]),
 
-        ])
+])
 
-layout_tab_2 = html.Div(children =[
+
+prediction_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
                 id = "prediction_pie_chart",
                 figure = prediction_pie_chart()
             ) ],
-            style={'height': 400,'width': '40%', 'float': 'left', 'display': 'flex', 'justify-content': 'center',"margin":"10px"}),
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
                 id = "predicted_prob_hist",
                 figure = predicted_prob_hist()
             )],
-            style={'height':400,'width': '55%', 'float': 'left', 'display': 'flex', 'justify-content': 'center', "margin":"10px"})
+            style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
             ]),
+
+        ])
+
+@app.callback(Output('vis-tabs-content', 'children'),
+              [Input('vis-tabs', 'value')])
+def render_content(tab):
+    if tab == 'tab-3':
+        return martial_status_vis
+    elif tab == 'tab-4':
+        return educational_Level_vis
+    elif tab == 'tab-5':
+        return income_vis 
+    elif tab == 'tab-6':
+        return contact_vis 
+    elif tab == 'tab-7':
+        return loan_vis 
+    elif tab == 'tab-8':
+        return house_vis 
+    elif tab == 'tab-9':
+        return prediction_vis  
+    else:
+        return martial_status_vis
+
+
+layout_tab_2 = html.Div(children =[
              
              html.Div(dash_table.DataTable(
                          columns=[
