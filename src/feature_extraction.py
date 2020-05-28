@@ -11,9 +11,8 @@ class FeatureExtractor:
     '''
     Feature extractor class for the bank data set. Calls pre_processing code and pre-processes the data. Then conducts the feature extraction tasks.
     
-    :param change_wd: Default is False, if you will change the working directory set it to True and 
-    use the method change_wd.
-    :type change_wd: bool, optional
+    :param change_wd_bool: Default is False, if you will change the working directory set it to True and use the method change_wd.
+    :type change_wd_bool: bool, optional
     :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
     :type wd: str, optional
     :param file_path: Location of the csv data file. Pass the location of 'bank-additional-full.csv' if you would like to change the default data path.
@@ -111,26 +110,30 @@ class FeatureExtractor:
         
         return one_hot
     
-    def get_features(self):
+    def get_features(self, scale = True):
         '''
         Get final features. This method first preprocesses the data and then does the feature extraction. Finally it one-hot-encodes the data. These processes are done by using class methods.
         
+        :param scale: True by default, scales the features.
+        :type scale: bool
         :return: Final features to be used in machine learning tasks. (Pandas DataFrame)
         :rtype: pandas.core.frame.DataFrame
         '''
         
         # get the preprocessed data
         prep = self.load_preprocessed_data()
-              
+        
         # scaling for numeric variables
-        features = self.data_scaler(prep)
-
+        if scale == True:
+            features = self.data_scaler(prep)
+        else:
+            features = prep.copy()
         # one hot encoding
         features_final = self.one_hot_encoder(features)
 
         return features_final
     
-    def get_train_test_split(self, test_size = 0.2, random_state = 1):
+    def get_train_test_split(self, test_size = 0.2, random_state = 1, scale = True):
         '''
         Train test splitting with desired parameters. Uses the result of get_features() method internally.
         
@@ -138,13 +141,15 @@ class FeatureExtractor:
         :type test_size: float, optional
         :param random_state: Random state to be used in splitting.
         :type random_state: float, optional
+        :param scale: True by default, scales the features.
+        :type scale: bool, optional
         :return: Train features, train labels, test features, test labels are returned in separate Pandas Dataframes in a tuple size of 4.
         :rtype: tuple
         '''
         assert isinstance(test_size, (float, int))
         assert isinstance(random_state, (int))
         
-        features_final = self.get_features()
+        features_final = self.get_features(scale = scale)
         
         X_train, X_test, y_train, y_test = train_test_split(features_final.loc[:, features_final.columns != 'y'], 
                                                             features_final.loc[:, features_final.columns == 'y'], 
@@ -157,9 +162,8 @@ def get_feature_extractor(change_wd_bool = False, wd = '', filepath = 'data/bank
     '''
     Kickstart the FeatureExtractor class.
 
-    :param change_wd_bool: Default is False, if you will change the working directory set it to True and 
-    use the method change_wd.
-    :type change_wd: bool, optional
+    :param change_wd_bool: Default is False, if you will change the working directory set it to True and use the method change_wd.
+    :type change_wd_bool: bool, optional
     :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
     :type wd: str, optional
     :param file_path: Location of the csv data file. Pass the location of 'bank-additional-full.csv' if you would like to change the default data path.
