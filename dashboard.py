@@ -174,6 +174,9 @@ def house_prob():
 def prediction_pie_chart():
     '''
     Plot predicted telecaller success ratios on the test data.
+    
+    :return: Plots the prediction pie chart.
+    :rtype: plotly.graph_objs._figure.Figure
     '''
     fig = px.pie(predictions, 
                  values=[1 for i in range(len(predictions))], 
@@ -184,6 +187,9 @@ def prediction_pie_chart():
 def predicted_prob_hist():
     '''
     Plot the histogram of the predicted probabilities.
+    
+    :return: Plots the prediction probability histogram.
+    :rtype: plotly.graph_objs._figure.Figure
     '''
     fig = px.histogram(predictions, 
                        x="prob_1", 
