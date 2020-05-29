@@ -30,7 +30,7 @@ def column_eliminator(data):
     
     return data
 
-def make_predictions(model = 'xgb', tune = False, save = False, wd = '../'):
+def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     '''
     Train a desired model and make predictions on the test data
     
@@ -40,7 +40,7 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = '../'):
     :type tune: bool
     :param save: False by default, make it True if you want to save the result, the results will be saved to /data folder.
     :type save: bool
-    :param wd: Path of the working directory, you need to provide the location of the git folder.
+    :param wd: Path of the working directory, you need to provide the location of the git folder.s
     :type wd: str
     :return: Predictions on the test data with the original test features.
     :rtype: pandas.core.frame.DataFrame
@@ -166,6 +166,6 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = '../'):
 def main():
     # change wd if necessary
     # os.chdir('C:/Users/iocak/Desktop/git/ECE229-Project/')
-    preds_with_features = make_predictions(model = 'xgb', tune = False, save = True, wd = '../ ')
+    preds_with_features = make_predictions(model = 'xgb', tune = False, save = True, wd = '')
     
     
