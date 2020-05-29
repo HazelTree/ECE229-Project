@@ -55,12 +55,12 @@ def marital_state_distribution():
     '''
     percents = my_analysis.percentage_of_population('marital')
     v = my_analysis.get_count('marital')['y']
-    values = [v[1], v[0], v[2]]
-    labels = ['Married', 'Divorced', 'Single']
+    values = [v[1], v[0], v[2], v[3]]
+    labels = ['Married', 'Divorced', 'Single', 'Unknown']
     my_analysis.get_count('marital')
     explode = (0.2, 0, 0)
     fig = px.pie(percents,  values= values, names = labels, 
-                title = 'Number of people who are married, divorced and single')
+                title = '%age of people who are married, divorced and single')
     return fig
 
 def marital_status_probab():
@@ -73,22 +73,16 @@ def marital_status_probab():
     return fig
 
 def education_level_distribution():
-    edu_count = my_analysis.get_count('education')
-    edu_success_count = my_analysis.get_success_count('education')
-
-    status=['Dropout', 'illiterate', 'professional.course', 'university.degree']
-
-    fig = go.Figure(data=[
-        go.Bar(name='Not Successful', x=status, y=edu_count['y']-edu_success_count['y']),
-        go.Bar(name='Success', x=status, y=edu_success_count['y'])
-    ])
-    # Change the bar mode
-    fig.update_layout(barmode='stack', xaxis_title="Education Level", yaxis_title="Number of people")
+    percents = my_analysis.percentage_of_population('education')
+    v = my_analysis.get_count('education')['y']
+    values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7]]
+    labels = ['basic_4y', 'basic_6y', 'basic_9y', 'high school', 'illiterate', 'professional course', 'university degree', 'unknown']
+    fig = px.pie(percents,  values= values, names = labels, 
+                title = '%age of population by education')
     return fig
 
 def education_level_prob():
-    edu_prob = my_analysis.get_probabilities('education')
-    data = edu_prob
+    data = my_analysis.get_probabilities('education')
     data['y'] = data['y']*100
     fig = px.bar(data, x='education', y='y',
                 hover_data=data, color='education',labels={'y':'Probability of Success (%)', 'education': 'Education Level'},
@@ -96,16 +90,12 @@ def education_level_prob():
     return fig
 
 def income_level_distribution():
-    job_count = my_analysis.get_count('job')
-    job_success_count = my_analysis.get_success_count('job')
-    #print(job_count)
-    status=['higher income', 'lower income', 'no income']
-
-    fig = go.Figure(data=[
-        go.Bar(name='Not Successful', x=status, y=job_count['y']-job_success_count['y']),
-        go.Bar(name='Success', x=status, y=job_success_count['y'])
-    ])
-    fig.update_layout(barmode='stack', xaxis_title="Income Level", yaxis_title="Number of people")
+    percents = my_analysis.percentage_of_population('job')
+    v = my_analysis.get_count('job')['y']
+    values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11]]
+    labels = ['admin', 'blue-collar', 'entrepreneur', 'house maid', 'management', 'retired', 'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown']
+    fig = px.pie(percents,  values= values, names = labels, 
+                title = '%age of population by job')
     return fig
 
 def job_prob():
@@ -149,7 +139,7 @@ def loan_status():
         go.Bar(name='Success', x=status, y=loan_success_count['y'])
     ])
     # Change the bar mode
-    fig.update_layout(barmode='stack', xaxis_title="Do people have a loan?", yaxis_title="Number of people")
+    fig.update_layout(barmode='stack', xaxis_title="Do people have a loan?", yaxis_title="Number of people", height=400)
     return fig
 
 def loan_prob():
@@ -171,7 +161,7 @@ def house_status_distribution():
         go.Bar(name='Success', x=status, y=housing_success_count['y'])
     ])
     # Change the bar mode
-    fig.update_layout(barmode='stack', xaxis_title="Housing Status", yaxis_title="Number of people")
+    fig.update_layout(barmode='stack', xaxis_title="Housing Status", yaxis_title="Number of people", height=400)
     return fig
 
 def house_prob():
@@ -210,6 +200,45 @@ def predicted_prob_hist():
                        title='Histogram of Success Probabilities')
     return fig
 
+def age_distribution():
+    No = [x[0] for x in myList]
+    Yes = [x[1] for x in myList]
+    x = np.arange(len(labels)) 
+    width = 0.20  
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=x - width/2,
+        y = No,
+        name='NO',
+        marker_color='indianred'
+    ))
+    fig.add_trace(go.Bar(
+        x=x + width/2,
+        y = Yes,
+        name='YES',
+        marker_color='lightsalmon'
+    ))
+
+    fig.update_layout(
+        title = 'COUNT OF YES/NO RESPONSE V/S AGE',
+        xaxis_title="Age Group",
+        yaxis_title="Number of People",
+        xaxis = dict(
+            tickmode = 'array',
+            tickvals = [i for i in range(len(labels))],
+            ticktext = labels
+        )
+    )
+    return fig
+
+def age_prob():
+    data = my_analysis.get_success_count("age")
+    fig = px.bar(data, x='age', y='y',
+                hover_data=data, labels={'y':'Number of Success (%)', 'age': 'Age'},
+                height=400)
+    return fig
+
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.config['suppress_callback_exceptions'] = True
@@ -223,7 +252,7 @@ tab_style = {
 }
 vis_tab_style = {
     'borderBottom': '1px solid #d6d6d6',
-    'padding': '15px',
+    'padding': '12px',
 }
 
 tab_selected_style = {
@@ -231,7 +260,7 @@ tab_selected_style = {
     'borderBottom': '1px solid #d6d6d6',
     'backgroundColor': '#119DFF',
     'color': 'white',
-    'padding': '15px'
+    'padding': '12px'
 }
 app.layout = html.Div(children = [
     dcc.Tabs(id="tabs", value='tab-1', children=[
@@ -249,7 +278,8 @@ layout_tab_1  = html.Div(children = [
         dcc.Tab(label='Contact Type', value='tab-6', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Loan Status', value='tab-7', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Housing Status', value='tab-8', style=vis_tab_style, selected_style=tab_selected_style),
-        dcc.Tab(label='Prediction Overview', value='tab-9', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Age', value='tab-9', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Prediction Overview', value='tab-10', style=vis_tab_style, selected_style=tab_selected_style),
     ]),
     html.Div(id='vis-tabs-content',style={'float': 'right'})
 ])
@@ -318,7 +348,7 @@ contact_vis = html.Div(children =[
                 id = "marital status",
                 figure = contact_way_distribution()
             ) ],
-            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
+            style={'height': 400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
@@ -337,7 +367,7 @@ loan_vis = html.Div(children =[
                 id = "marital status",
                 figure = loan_status()
             ) ],
-            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
+            style={'height': 400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
@@ -355,7 +385,7 @@ house_vis = html.Div(children =[
                 id = "marital status",
                 figure = house_status_distribution()
             ) ],
-            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
+            style={'height': 400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
@@ -387,6 +417,25 @@ prediction_vis = html.Div(children =[
 
         ])
 
+age_vis = html.Div(children =[
+            html.Div([
+            html.Div(children =[
+                dcc.Graph(
+                id = "prediction_pie_chart",
+                figure = age_distribution()
+            ) ],
+            style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
+
+            html.Div(children =[
+                dcc.Graph(
+                id = "predicted_prob_hist",
+                figure = age_prob()
+            )],
+            style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
+            ]),
+
+        ])
+
 @app.callback(Output('vis-tabs-content', 'children'),
               [Input('vis-tabs', 'value')])
 def render_content(tab):
@@ -403,7 +452,9 @@ def render_content(tab):
     elif tab == 'tab-8':
         return house_vis 
     elif tab == 'tab-9':
-        return prediction_vis  
+        return age_vis
+    elif tab == "tab-10":
+        return prediction_vis
     else:
         return marital_status_vis
 
@@ -485,45 +536,47 @@ layout_tab_2 = html.Div(children =[
 
 layout_tab_new = html.Div(children =[
     html.Div(children =[
+    html.Div(children =[
     html.Label('Enter number of employees (quarterly indicator): '),
     dcc.Input(id='nremployed', placeholder='# employees', type='number')],
-              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
               
     html.Div(children =[
     html.Label('Enter the outcome of the previous marketing campaign: '),
     dcc.Input(id='poutcome_success', placeholder='prev.', type='number', min = 0, max = 1, step = 1)],
-              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
               
     html.Div(children =[
     html.Label('Enter the employment variation rate - quarterly indicator: '),
     dcc.Input(id='emp', placeholder='emp. variation rate', type='number')],
-              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
               
     html.Div(children =[
     html.Label('Enter the number of days since the last call (999 if NA): '),
     dcc.Input(id='pdays', placeholder='# days since last call', type='number')],
-              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
               
     html.Div(children =[
     html.Label('Enter the consumer confidence index (monthly indicator): '),
     dcc.Input(id='consconfidx', placeholder='consumer conf. index', type='number')],
-              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
               
     html.Div(children =[
     html.Label('Enter the euribor 3 month rate (daily indicator): '),
     dcc.Input(id='euribor3m', placeholder='euribor rate', type='number')],
-              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
               
     html.Div(children =[
     html.Label('Enter the no income indicator, 1 if the customer job retired, student or unemployed: '),
     dcc.Input(id='job_transformed_no_income', placeholder='inc', type='number', min = 0, max = 1, step = 1)],
-              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
-
-
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
+    
+    ]),
+   
     html.Div(children=[
         html.H1(children='Probability of Success: '),
         html.Div(id='pred-output')
-    ], style={'textAlign': 'center'}),
+    ], style={'textAlign': 'center', 'justify-content': 'center'}),
 ])
 @app.callback(
     Output('pred-output', 'children'),
