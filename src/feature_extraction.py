@@ -18,7 +18,7 @@ class FeatureExtractor:
     :param file_path: Location of the csv data file. Pass the location of 'bank-additional-full.csv' if you would like to change the default data path.
     :type file_path: str, optional
     '''
-    def __init__(self, change_wd_bool = False, wd = '', filepath = 'data/bank-additional-full.csv'):
+    def __init__(self, change_wd_bool = False, wd = '../', filepath = 'data/bank-additional-full.csv'):
         """
         Constructor method
         """
