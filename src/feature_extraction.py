@@ -21,7 +21,8 @@ class FeatureExtractor:
         """
         Constructor method
         """
-        self.filepath = os.path.join(wd,filepath)
+        self.wd = wd
+        self.filepath = os.path.join(self.wd,filepath)
         
     def load_preprocessed_data(self):
         '''

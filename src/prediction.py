@@ -144,7 +144,7 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     accuracy = accuracy_score(y_test, pred)
     conf = confusion_matrix(y_test, pred)
     
-    df_pred = X_test_raw[['customer_id']]
+    df_pred = X_test_raw[['customer_id']].copy()
     df_pred['pred'] = pred
     df_pred['prob_1'] = probs[:, 1]
     
