@@ -32,14 +32,14 @@ df.sort_values(by = ['prob_1'], ascending = False, inplace = True)
 df['prob_1'] = np.around(df['prob_1'], decimals = 2)
 df['is_called'] = 0
 
-def martial_state_distribution():
+def marital_state_distribution():
     '''
-    This function gives the plot of distribution of people's martial status.
+    This function gives the plot of distribution of people's marital status.
 
     Returns
     -------
     plotly.graph_objs._figure.Figure
-        returns a interactive graph of martial status distribution.
+        returns a interactive graph of marital status distribution.
 
 
     '''
@@ -233,7 +233,7 @@ app.layout = html.Div(children = [
 ])
 layout_tab_1  = html.Div(children = [
     dcc.Tabs(id = "vis-tabs", value = "vistab", vertical=True, parent_style={'float': 'left','width': '40'},children =[
-        dcc.Tab(label='Martial Status', value='tab-3', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Marital Status', value='tab-3', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Educational Level', value='tab-4', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Income&Job', value='tab-5', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Contact Type', value='tab-6', style=vis_tab_style, selected_style=tab_selected_style),
@@ -248,14 +248,14 @@ martial_status_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
-                figure = martial_state_distribution()
+                id = "marital status",
+                figure = marital_state_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center' }),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = marital_status_probab()
             )],
             style={'height': 400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -266,14 +266,14 @@ educational_Level_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = education_level_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = education_level_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -286,14 +286,14 @@ income_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = income_level_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = job_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -305,14 +305,14 @@ contact_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = contact_way_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = contact_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -324,14 +324,14 @@ loan_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = loan_status()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = loan_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -342,14 +342,14 @@ house_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = house_status_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = house_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -381,7 +381,7 @@ prediction_vis = html.Div(children =[
               [Input('vis-tabs', 'value')])
 def render_content(tab):
     if tab == 'tab-3':
-        return martial_status_vis
+        return marital_status_vis
     elif tab == 'tab-4':
         return educational_Level_vis
     elif tab == 'tab-5':
@@ -395,7 +395,7 @@ def render_content(tab):
     elif tab == 'tab-9':
         return prediction_vis  
     else:
-        return martial_status_vis
+        return marital_status_vis
 
 
 layout_tab_2 = html.Div(children =[
