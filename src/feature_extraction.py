@@ -7,31 +7,21 @@ import os
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
+from src import pre_processing as pp
+
 class FeatureExtractor:
     '''
     Feature extractor class for the bank data set. Calls pre_processing code and pre-processes the data. Then conducts the feature extraction tasks.
-    
-    :param change_wd_bool: Default is False, if you will change the working directory set it to True and use the method change_wd.
-    :type change_wd_bool: bool, optional
-    :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
+    :param wd: The default working directory. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
     :type wd: str, optional
     :param file_path: Location of the csv data file. Pass the location of 'bank-additional-full.csv' if you would like to change the default data path.
     :type file_path: str, optional
     '''
-    def __init__(self, change_wd_bool = False, wd = '../', filepath = 'data/bank-additional-full.csv'):
+    def __init__(self, wd = '../', filepath = 'data/bank-additional-full.csv'):
         """
         Constructor method
         """
-        self.change_wd_bool = change_wd_bool
-        self.wd = wd
-        self.filepath = filepath
-        
-    def change_wd(self):
-        '''
-        Change the working directory. This method changes the working directory of the repo. It should always be set to src folder.
-        '''
-        # If the working directory is not src folder, change it
-        os.chdir(self.wd)
+        self.filepath = os.path.join(wd,filepath)
         
     def load_preprocessed_data(self):
         '''
@@ -41,12 +31,6 @@ class FeatureExtractor:
         :rtype: pandas.core.frame.DataFrame
         '''
         
-        if self.change_wd_bool == True:
-            self.change_wd()
-        
-        # import custom pre_processing library
-        from src import pre_processing as pp
-            
         # read the data
         bank_data = pp.load_data(self.filepath)
         bank_data.process_all()
@@ -158,24 +142,22 @@ class FeatureExtractor:
         
         return X_train, X_test, y_train, y_test
 
-def get_feature_extractor(change_wd_bool = False, wd = '', filepath = 'data/bank-additional-full.csv'):
+def get_feature_extractor(wd = '', filepath = 'data/bank-additional-full.csv'):
     '''
     Kickstart the FeatureExtractor class.
-
-    :param change_wd_bool: Default is False, if you will change the working directory set it to True and use the method change_wd.
-    :type change_wd_bool: bool, optional
-    :param wd: The default working directory, no need to pass if change_wd_bool is False. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
+    
+    :param wd: The default working directory. It should be set to the location of the src folder. For example: 'C:/Users/iocak/Desktop/git/ECE229-Project/src'
     :type wd: str, optional
     :param file_path: Location of the csv data file. Pass the location of 'bank-additional-full.csv' if you would like to change the default data path.
     :type file_path: str, optional
     :return: Returns a FeatureExtractor object.
     :rtype: class:`FeatureExtractor` 
     '''
-    assert isinstance(change_wd_bool, bool)
+    
     assert isinstance(wd, str)
     assert isinstance(filepath, str)
     
-    return FeatureExtractor(change_wd_bool, wd, filepath)
+    return FeatureExtractor(wd, filepath)
 
 
 

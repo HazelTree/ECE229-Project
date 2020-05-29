@@ -6,14 +6,6 @@ from src.feature_extraction import *
 import src.feature_extraction as feature_ex
 
 feature_extraction = FeatureExtractor()
-def test_change_wd():
-    '''
-    Tests the change_wd() function in feature_extractor.py. The change_wd() changes the working directory. We test to ensure that working directory is not changed when we do not pass any parameter to change it.
-    '''
-    try:
-        feature_extraction.change_wd()
-    except FileNotFoundError:
-        pass
 
 def test_load_preprocessed_data():
     '''
@@ -22,38 +14,42 @@ def test_load_preprocessed_data():
     assert type(feature_extraction.load_preprocessed_data()) == pd.DataFrame
 def test_data_scaler():
     '''
-    Tests the data_scaler() function
+    Tests the data_scaler() function.
     '''
     assert type(feature_extraction.data_scaler(feature_extraction.load_preprocessed_data())) == pd.DataFrame
     
 def test_one_hot_encoder():
     '''
-    Tests the one_hot_encoder() function
+    Tests the one_hot_encoder() function.
     '''
     encoding = feature_extraction.data_scaler(feature_extraction.data_scaler(feature_extraction.load_preprocessed_data()))
     assert type(encoding) == pd.DataFrame
 def test_get_features():
     '''
-    Tests the get_features() function
+    Tests the get_features() function.
     '''
-    feature_extraction.get_features()
+    features = feature_extraction.get_features()
+    assert type(features) == pd.DataFrame
     
 def test_get_train_test_split():
     '''
-    Tests the get_train_test_split() function
+    Tests the get_train_test_split() function.
     '''
-    try:
-        feature_extraction.get_train_test_split()
-    except FileNotFoundError:
-        pass
+   
+    X_train, X_test, y_train, y_test = feature_extraction.get_train_test_split()
     
-    
+    assert type(X_train) == pd.DataFrame and  type(X_test) == pd.DataFrame
+    assert type(y_train) == pd.DataFrame and  type(y_test) == pd.DataFrame
+    assert X_train.shape == (32950, 73) and y_train.shape == (32950, 1)
+    assert X_test.shape == (8238, 73) and y_test.shape == (8238, 1)
+
+
 def test_get_feature_extractor():
     '''
     Tests the get_feature_extractor() function
     '''
-    try:
-        feature_ex.get_feature_extractor()
-    except FileNotFoundError:
-        pass
+   
+    f = feature_ex.get_feature_extractor()
+    assert isinstance(f,FeatureExtractor)
+    
 
