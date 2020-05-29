@@ -11,6 +11,8 @@ import plotly.graph_objs as go
 import plotly.figure_factory as ff
 import plotly.express as px
 from plotly.offline import plot
+from sklearn.externals import joblib
+from util import dynamic_predict
 
 
 from visualization import analysis  
@@ -225,6 +227,7 @@ app.layout = html.Div(children = [
     dcc.Tabs(id="tabs", value='tab-1', children=[
         dcc.Tab(label='Visualization', value='tab-1', style=tab_style),
         dcc.Tab(label='Prediction', value='tab-2', style=tab_style),
+        dcc.Tab(label='Prediction-test', value='tab-new', style=tab_style),
     ]),
     html.Div(id='tabs-content')
 ])
@@ -423,6 +426,52 @@ layout_tab_2 = html.Div(children =[
                 
         ])
 
+layout_tab_new = html.Div(children =[
+    html.Div(children =[
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='nremployed', placeholder='nr.employed', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='poutcome_success', placeholder='poutcome_success', type='number', min=0, max=1, step=1),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='emp', placeholder='emp.var.rate', type='text'),
+    ],style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
+
+    html.Div(children =[
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='pdays', placeholder='pdays', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='consconfidx', placeholder='cons.conf.idx', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='euribor3m', placeholder='euribor3m', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='job_transformed_no_income', placeholder='job_transformed_no_income', type='number', min=0, max=1, step=1),
+    ],style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
+
+
+    html.Div(children=[
+        html.H1(children='Probability of Success: '),
+        html.Div(id='pred-output')
+    ], style={'textAlign': 'center'}),
+])
+@app.callback(
+    Output('pred-output', 'children'),
+    [Input('nremployed', 'value'),
+     Input('poutcome_success', 'value'),
+     Input('emp', 'value'),
+     Input('pdays', 'value'),
+     Input('consconfidx', 'value'),
+     Input('euribor3m', 'value'),
+     Input('job_transformed_no_income', 'value')])
+def show_success_probability(nr_employed, poutcome_success, emp_var_rate, pdays, cons_conf, euribor, no_income):
+    if not nr_employed or not poutcome_success or not emp_var_rate or not pdays or not cons_conf or not euribor or not no_income:
+        raise PreventUpdate
+    else:
+        prob = round(dynamic_predict(float(nr_employed), float(poutcome_success), float(emp_var_rate), float(pdays), float(cons_conf), float(euribor), float(no_income))[0],4)*100
+        return html.Div(children =[
+            html.H1(children=str(prob)+"%")
+        ])
+
+
 @app.callback(Output('tabs-content', 'children'),
               [Input('tabs', 'value')])
 def render_content(tab):
@@ -430,6 +479,9 @@ def render_content(tab):
         return layout_tab_1
     elif tab == 'tab-2':
         return layout_tab_2
+    elif tab == "tab-new":
+        return layout_tab_new
 
 if __name__ == '__main__':
+    model = joblib.load("LR_prediction.joblib")
     app.run_server(debug=True)
