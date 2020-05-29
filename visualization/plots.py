@@ -7,7 +7,7 @@ csv_path = '../data/bank-additional-full.csv'
 my_analysis = analysis.Analysis(csv_path)
 myList, labels = my_analysis.map_age()
 print(1)
-def martial_state_distribution():
+def marital_state_distribution():
     '''
     This function gives the plot of distribution of people's martial status.
 
