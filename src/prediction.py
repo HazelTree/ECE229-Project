@@ -40,7 +40,7 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     :type tune: bool
     :param save: False by default, make it True if you want to save the result, the results will be saved to /data folder.
     :type save: bool
-    :param wd: Path of the working directory, you need to provide the location of the git folder.s
+    :param wd: Path of the working directory, you need to provide the location of the git folder.
     :type wd: str
     :return: Predictions on the test data with the original test features.
     :rtype: pandas.core.frame.DataFrame
