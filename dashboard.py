@@ -244,7 +244,7 @@ layout_tab_1  = html.Div(children = [
     html.Div(id='vis-tabs-content',style={'float': 'right'})
 ])
 
-martial_status_vis = html.Div(children =[
+marital_status_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
