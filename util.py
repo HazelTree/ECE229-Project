@@ -49,7 +49,7 @@ accuracy = accuracy_score(y_test, pred)
 conf = confusion_matrix(y_test, pred)
 
 # enter the params and get the predicted probability
-def dynamic_predict(nr_employed, poutcome_success, emp_var_rate, pdays, cons_conf, euribor, no_income):
+def dynamic_predict(nr_employed=0, poutcome_success=0, emp_var_rate=0, pdays=0, cons_conf=0, euribor=0, no_income=0):
     '''
     Create predictions for new customers. Enter the inputs and get the probability.
     
