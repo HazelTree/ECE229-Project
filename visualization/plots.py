@@ -7,14 +7,14 @@ csv_path = '../data/bank-additional-full.csv'
 my_analysis = analysis.Analysis(csv_path)
 myList, labels = my_analysis.map_age()
 print(1)
-def martial_state_distribution():
+def marital_state_distribution():
     '''
-    This function gives the plot of distribution of people's martial status.
+    This function gives the plot of distribution of people's marital status.
 
     Returns
     -------
     plotly.graph_objs._figure.Figure
-        returns a interactive graph of martial status distribution.
+        returns a interactive graph of marital status distribution.
     '''
     percents = my_analysis.percentage_of_population('marital')
     v = my_analysis.get_count('marital')['y']

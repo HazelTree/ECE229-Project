@@ -13,7 +13,8 @@ import plotly.express as px
 from plotly.offline import plot
 import dash_table.FormatTemplate as FormatTemplate
 from dash_table.Format import Sign
-
+from sklearn.externals import joblib
+from util import dynamic_predict
 
 from visualization import analysis  
 # from visualization import plots 
@@ -41,14 +42,14 @@ df.loc[df['poutcome'] == 'success', 'poutcome'] = 'Success'
 df.loc[df['poutcome'] == 'nonexistent', 'poutcome'] = 'None'
 df.loc[df['poutcome'] == 'failure', 'poutcome'] = 'Failure'
 
-def martial_state_distribution():
+def marital_state_distribution():
     '''
-    This function gives the plot of distribution of people's martial status.
+    This function gives the plot of distribution of people's marital status.
 
     Returns
     -------
     plotly.graph_objs._figure.Figure
-        returns a interactive graph of martial status distribution.
+        returns a interactive graph of marital status distribution.
 
 
     '''
@@ -236,12 +237,13 @@ app.layout = html.Div(children = [
     dcc.Tabs(id="tabs", value='tab-1', children=[
         dcc.Tab(label='Visualization', value='tab-1', style=tab_style),
         dcc.Tab(label='Prediction', value='tab-2', style=tab_style),
+        dcc.Tab(label='Prediction-test', value='tab-new', style=tab_style),
     ]),
     html.Div(id='tabs-content')
 ])
 layout_tab_1  = html.Div(children = [
     dcc.Tabs(id = "vis-tabs", value = "vistab", vertical=True, parent_style={'float': 'left','width': '40'},children =[
-        dcc.Tab(label='Martial Status', value='tab-3', style=vis_tab_style, selected_style=tab_selected_style),
+        dcc.Tab(label='Marital Status', value='tab-3', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Educational Level', value='tab-4', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Income&Job', value='tab-5', style=vis_tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Contact Type', value='tab-6', style=vis_tab_style, selected_style=tab_selected_style),
@@ -252,18 +254,18 @@ layout_tab_1  = html.Div(children = [
     html.Div(id='vis-tabs-content',style={'float': 'right'})
 ])
 
-martial_status_vis = html.Div(children =[
+marital_status_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
-                figure = martial_state_distribution()
+                id = "marital status",
+                figure = marital_state_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center' }),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = marital_status_probab()
             )],
             style={'height': 400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -274,14 +276,14 @@ educational_Level_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = education_level_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = education_level_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -294,14 +296,14 @@ income_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = income_level_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = job_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -313,14 +315,14 @@ contact_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = contact_way_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = contact_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -332,14 +334,14 @@ loan_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = loan_status()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = loan_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -350,14 +352,14 @@ house_vis = html.Div(children =[
             html.Div([
             html.Div(children =[
                 dcc.Graph(
-                id = "martial status",
+                id = "marital status",
                 figure = house_status_distribution()
             ) ],
             style={'height': 400,'width': '300', 'float': 'left', 'display': 'flex', 'justify-content': 'center'}),
 
             html.Div(children =[
                 dcc.Graph(
-                id = "martial prob",
+                id = "marital prob",
                 figure = house_prob()
             )],
             style={'height':400,'width': '400', 'float': 'left', 'display': 'flex', 'justify-content': 'center'})
@@ -389,7 +391,7 @@ prediction_vis = html.Div(children =[
               [Input('vis-tabs', 'value')])
 def render_content(tab):
     if tab == 'tab-3':
-        return martial_status_vis
+        return marital_status_vis
     elif tab == 'tab-4':
         return educational_Level_vis
     elif tab == 'tab-5':
@@ -403,7 +405,7 @@ def render_content(tab):
     elif tab == 'tab-9':
         return prediction_vis  
     else:
-        return martial_status_vis
+        return marital_status_vis
 
 
 layout_tab_2 = html.Div(children =[
@@ -481,6 +483,52 @@ layout_tab_2 = html.Div(children =[
                 
         ])
 
+layout_tab_new = html.Div(children =[
+    html.Div(children =[
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='nremployed', placeholder='nr.employed', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='poutcome_success', placeholder='poutcome_success', type='number', min=0, max=1, step=1),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='emp', placeholder='emp.var.rate', type='text'),
+    ],style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
+
+    html.Div(children =[
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='pdays', placeholder='pdays', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='consconfidx', placeholder='cons.conf.idx', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='euribor3m', placeholder='euribor3m', type='text'),
+    html.Label('Enter years of experience: '),
+    dcc.Input(id='job_transformed_no_income', placeholder='job_transformed_no_income', type='number', min=0, max=1, step=1),
+    ],style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
+
+
+    html.Div(children=[
+        html.H1(children='Probability of Success: '),
+        html.Div(id='pred-output')
+    ], style={'textAlign': 'center'}),
+])
+@app.callback(
+    Output('pred-output', 'children'),
+    [Input('nremployed', 'value'),
+     Input('poutcome_success', 'value'),
+     Input('emp', 'value'),
+     Input('pdays', 'value'),
+     Input('consconfidx', 'value'),
+     Input('euribor3m', 'value'),
+     Input('job_transformed_no_income', 'value')])
+def show_success_probability(nr_employed, poutcome_success, emp_var_rate, pdays, cons_conf, euribor, no_income):
+    if not nr_employed or not poutcome_success or not emp_var_rate or not pdays or not cons_conf or not euribor or not no_income:
+        raise PreventUpdate
+    else:
+        prob = round(dynamic_predict(float(nr_employed), float(poutcome_success), float(emp_var_rate), float(pdays), float(cons_conf), float(euribor), float(no_income))[0],4)*100
+        return html.Div(children =[
+            html.H1(children=str(prob)+"%")
+        ])
+
+
 @app.callback(Output('tabs-content', 'children'),
               [Input('tabs', 'value')])
 def render_content(tab):
@@ -488,6 +536,9 @@ def render_content(tab):
         return layout_tab_1
     elif tab == 'tab-2':
         return layout_tab_2
+    elif tab == "tab-new":
+        return layout_tab_new
 
 if __name__ == '__main__':
+    model = joblib.load("LR_prediction.joblib")
     app.run_server(debug=True)
