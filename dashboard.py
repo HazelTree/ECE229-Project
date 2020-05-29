@@ -491,6 +491,11 @@ layout_tab_2 = html.Div(children =[
                              'overflow': 'hidden',
                              'textOverflow': 'ellipsis',
                          },
+                         style_cell = {
+                             'font_family': 'arial',
+                             'font_size': '16px',
+                             'text_align': 'center'
+                         },
 #                         style_cell_conditional=[
 #                            {
 #                                'if': {'column_id': c},
