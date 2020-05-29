@@ -11,9 +11,10 @@ import plotly.graph_objs as go
 import plotly.figure_factory as ff
 import plotly.express as px
 from plotly.offline import plot
+import dash_table.FormatTemplate as FormatTemplate
+from dash_table.Format import Sign
 from sklearn.externals import joblib
 from util import dynamic_predict
-
 
 from visualization import analysis  
 # from visualization import plots 
@@ -30,7 +31,16 @@ df = predictions.copy()
 df = df[['customer_id', 'age', 'job_transformed', 'poutcome', 'pred', 'prob_1']]  # prune columns for example
 df.sort_values(by = ['prob_1'], ascending = False, inplace = True)
 df['prob_1'] = np.around(df['prob_1'], decimals = 2)
-df['is_called'] = 0
+df['is_called'] = 'Not Called'
+
+df.loc[df['job_transformed'] == 'no_income', 'job_transformed'] = 'No Income'
+df.loc[df['job_transformed'] == 'higher_income', 'job_transformed'] = 'Higher Income'
+df.loc[df['job_transformed'] == 'lower_income', 'job_transformed'] = 'Lower Income'
+df.loc[df['job_transformed'] == 'unknown', 'job_transformed'] = 'Unknown'
+
+df.loc[df['poutcome'] == 'success', 'poutcome'] = 'Success'
+df.loc[df['poutcome'] == 'nonexistent', 'poutcome'] = 'None'
+df.loc[df['poutcome'] == 'failure', 'poutcome'] = 'Failure'
 
 def marital_state_distribution():
     '''
@@ -406,21 +416,68 @@ layout_tab_2 = html.Div(children =[
                              {'name': 'Age', 'id': 'age', 'type': 'numeric', 'editable': False},
                              {'name': 'Income', 'id': 'job_transformed', 'type': 'text', 'editable': False},
                              {'name': 'Previously Contacted', 'id': 'poutcome', 'type': 'text', 'editable': False},
-                             {'name': 'Prediction', 'id': 'pred', 'type': 'numeric', 'editable': False},
-                             {'name': 'Probability of Success', 'id': 'prob_1', 'type': 'numeric', 'editable': False},
-                             {'name': 'Is Called', 'id': 'is_called', 'type': 'numeric', 'editable': True}
+                             {'name': 'Probability of Success', 'id': 'prob_1', 'type': 'numeric', 'editable': False, 'format': FormatTemplate.percentage(1)},
+                             {'name': 'Call Result', 'id': 'is_called', 'type': 'any', 'editable': True, 'presentation': 'dropdown'}
                          ],
                          data=df.to_dict('records'),
                          filter_action='native',
-                    
+                         dropdown={
+                             'is_called': {
+                                 'options': [
+                                     {'label': i, 'value': i}
+                                     for i in ['Not Called', 'Success', 'Failure']
+                                 ]
+                             }
+                         },                
                          style_table={
-                             'height': 400,
+                             'maxHeight': '50ex',
+                             'overflowY': 'scroll',
+                             'width': '100%',
+                             'minWidth': '100%',
                          },
                          style_data={
                              'width': '150px', 'minWidth': '150px', 'maxWidth': '150px',
                              'overflow': 'hidden',
                              'textOverflow': 'ellipsis',
-                         }
+                         },
+#                         style_cell_conditional=[
+#                            {
+#                                'if': {'column_id': c},
+#                                'textAlign': 'left'
+#                            } for c in ['customer_id', 'job_transformed', 'poutcome', 'is_called']
+#                        ],
+                         style_data_conditional=[
+                            {
+                                'if': {'row_index': 'odd'},
+                                'backgroundColor': 'rgb(248, 248, 248)'
+                            }, {
+                                'if': {
+                                    'column_id': 'is_called',
+                                    'filter_query': '{is_called} eq "Not Called"'
+                                },
+                                'backgroundColor': '#E0E280'
+                            }, {
+                                'if': {
+                                    'column_id': 'is_called',
+                                    'filter_query': '{is_called} eq "Success"'
+                                },
+                                'backgroundColor': '#8CE280'
+                            }, {
+                                'if': {
+                                    'column_id': 'is_called',
+                                    'filter_query': '{is_called} eq "Failure"'
+                                },
+                                'backgroundColor': '#E28080'
+                            }
+                        ],
+                         style_header={
+                            'backgroundColor': 'rgb(230, 230, 230)',
+                            'fontWeight': 'bold'
+                        },
+                         page_action="native",
+                         page_current= 0,
+                         sort_action="native",
+                         sort_mode="multi"
                          )                    
                      )                
                 
