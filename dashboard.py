@@ -235,9 +235,9 @@ tab_selected_style = {
 }
 app.layout = html.Div(children = [
     dcc.Tabs(id="tabs", value='tab-1', children=[
-        dcc.Tab(label='Visualization', value='tab-1', style=tab_style),
-        dcc.Tab(label='Prediction', value='tab-2', style=tab_style),
-        dcc.Tab(label='Prediction-test', value='tab-new', style=tab_style),
+        dcc.Tab(label='Manager Dashboard', value='tab-1', style=tab_style),
+        dcc.Tab(label='Telecaller Dashboard', value='tab-2', style=tab_style),
+        dcc.Tab(label='Live Prediction Dashboard', value='tab-new', style=tab_style),
     ]),
     html.Div(id='tabs-content')
 ])
@@ -485,24 +485,39 @@ layout_tab_2 = html.Div(children =[
 
 layout_tab_new = html.Div(children =[
     html.Div(children =[
-    html.Label('Enter years of experience: '),
-    dcc.Input(id='nremployed', placeholder='nr.employed', type='text'),
-    html.Label('Enter years of experience: '),
-    dcc.Input(id='poutcome_success', placeholder='poutcome_success', type='number', min=0, max=1, step=1),
-    html.Label('Enter years of experience: '),
-    dcc.Input(id='emp', placeholder='emp.var.rate', type='text'),
-    ],style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
-
+    html.Label('Enter number of employees (quarterly indicator): '),
+    dcc.Input(id='nremployed', placeholder='# employees', type='number')],
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              
     html.Div(children =[
-    html.Label('Enter years of experience: '),
-    dcc.Input(id='pdays', placeholder='pdays', type='text'),
-    html.Label('Enter years of experience: '),
-    dcc.Input(id='consconfidx', placeholder='cons.conf.idx', type='text'),
-    html.Label('Enter years of experience: '),
-    dcc.Input(id='euribor3m', placeholder='euribor3m', type='text'),
-    html.Label('Enter years of experience: '),
-    dcc.Input(id='job_transformed_no_income', placeholder='job_transformed_no_income', type='number', min=0, max=1, step=1),
-    ],style={'float': 'center', 'display': 'flex', 'justify-content': 'center'}),
+    html.Label('Enter the outcome of the previous marketing campaign: '),
+    dcc.Input(id='poutcome_success', placeholder='prev.', type='number', min = 0, max = 1, step = 1)],
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              
+    html.Div(children =[
+    html.Label('Enter the employment variation rate - quarterly indicator: '),
+    dcc.Input(id='emp', placeholder='emp. variation rate', type='number')],
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              
+    html.Div(children =[
+    html.Label('Enter the number of days since the last call (999 if NA): '),
+    dcc.Input(id='pdays', placeholder='# days since last call', type='number')],
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              
+    html.Div(children =[
+    html.Label('Enter the consumer confidence index (monthly indicator): '),
+    dcc.Input(id='consconfidx', placeholder='consumer conf. index', type='number')],
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              
+    html.Div(children =[
+    html.Label('Enter the euribor 3 month rate (daily indicator): '),
+    dcc.Input(id='euribor3m', placeholder='euribor rate', type='number')],
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
+              
+    html.Div(children =[
+    html.Label('Enter the no income indicator, 1 if the customer job retired, student or unemployed: '),
+    dcc.Input(id='job_transformed_no_income', placeholder='inc', type='number', min = 0, max = 1, step = 1)],
+              style={'float': 'center', 'display': 'flex', 'justify-content': 'left'}),
 
 
     html.Div(children=[
@@ -520,13 +535,27 @@ layout_tab_new = html.Div(children =[
      Input('euribor3m', 'value'),
      Input('job_transformed_no_income', 'value')])
 def show_success_probability(nr_employed, poutcome_success, emp_var_rate, pdays, cons_conf, euribor, no_income):
-    if not nr_employed or not poutcome_success or not emp_var_rate or not pdays or not cons_conf or not euribor or not no_income:
-        raise PreventUpdate
-    else:
-        prob = round(dynamic_predict(float(nr_employed), float(poutcome_success), float(emp_var_rate), float(pdays), float(cons_conf), float(euribor), float(no_income))[0],4)*100
-        return html.Div(children =[
-            html.H1(children=str(prob)+"%")
-        ])
+    if not nr_employed: 
+        nr_employed = 0
+    if not poutcome_success: 
+        poutcome_success = 0
+    if not emp_var_rate: 
+        emp_var_rate = 0
+    if not pdays: 
+        pdays = 0
+    if not cons_conf: 
+        cons_conf = 0
+    if not euribor: 
+        euribor = 0
+    if not no_income:
+        no_income = 0
+        
+        #raise PreventUpdate
+    #else:
+    prob = dynamic_predict(nr_employed, poutcome_success, emp_var_rate, pdays, cons_conf, euribor, no_income)[0]*100
+    return html.Div(children =[
+        html.H1(children=f'{round(prob, ndigits = 2)}'+"%")
+    ])
 
 
 @app.callback(Output('tabs-content', 'children'),
