@@ -33,7 +33,7 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     '''
     Train a desired model and make predictions on the test data
     
-    :param model: Type of the model to be used. Possible values: 'lr', 'rf', 'xgb'
+    :param model: Name of the model to be used. Possible values: 'lr', 'rf', 'xgb'
     :type model: str
     :param tune: False by default, make it True if you want to tune the hyper parameters
     :type tune: bool
