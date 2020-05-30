@@ -60,7 +60,7 @@ def marital_state_distribution():
     my_analysis.get_count('marital')
     explode = (0.2, 0, 0)
     fig = px.pie(percents,  values= values, names = labels, 
-                title = '%age of people who are married, divorced and single')
+                title = '% of people who are married, divorced and single')
     return fig
 
 def marital_status_probab():
@@ -78,7 +78,7 @@ def education_level_distribution():
     values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7]]
     labels = ['basic_4y', 'basic_6y', 'basic_9y', 'high school', 'illiterate', 'professional course', 'university degree', 'unknown']
     fig = px.pie(percents,  values= values, names = labels, 
-                title = '%age of population by education')
+                title = '% of population by education')
     return fig
 
 def education_level_prob():
@@ -95,7 +95,7 @@ def income_level_distribution():
     values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11]]
     labels = ['admin', 'blue-collar', 'entrepreneur', 'house maid', 'management', 'retired', 'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown']
     fig = px.pie(percents,  values= values, names = labels, 
-                title = '%age of population by job')
+                title = '% of population by job')
     return fig
 
 def job_prob():
