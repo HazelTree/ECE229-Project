@@ -62,14 +62,14 @@ def marital_state_distribution():
     fig = px.pie(percents,  values= values, names = labels, 
                 title = '% of people who are married, divorced and single')
     return fig
-
+ 
 def marital_status_probab():
     marital_status_probab = my_analysis.get_probabilities('marital')
     data = marital_status_probab
     data['y'] = data['y']*100
     fig = px.bar(data, x='marital', y='y',
                 hover_data=data, color='marital',labels={'y':'Probability of Success (%)', 'marital': 'Marital Status'},
-                height=400)
+                height=400, title = 'Probability of success by marital status')
     return fig
 
 def education_level_distribution():
@@ -86,7 +86,7 @@ def education_level_prob():
     data['y'] = data['y']*100
     fig = px.bar(data, x='education', y='y',
                 hover_data=data, color='education',labels={'y':'Probability of Success (%)', 'education': 'Education Level'},
-                height=400)
+                height=400, title = 'Probability of success by education')
     return fig
 
 def income_level_distribution():
@@ -104,7 +104,7 @@ def job_prob():
     data['y'] = data['y']*100
     fig = px.bar(data, x='job', y='y',
                 hover_data=data, color='job',labels={'y':'Probability of Success (%)', 'job': 'Job'},
-                height=400)
+                height=400, title = 'Probability of success by job')
     return fig
 
 def contact_way_distribution():
@@ -139,7 +139,7 @@ def loan_status():
         go.Bar(name='Success', x=status, y=loan_success_count['y'])
     ])
     # Change the bar mode
-    fig.update_layout(barmode='stack', xaxis_title="Do people have a loan?", yaxis_title="Number of people", height=400)
+    fig.update_layout(barmode='stack', title = "Do people have a loan?", yaxis_title="Number of people", height=400)
     return fig
 
 def loan_prob():
@@ -148,7 +148,7 @@ def loan_prob():
     data['y'] = data['y']*100
     fig = px.bar(data, x='loan', y='y',
                 hover_data=data, color='loan',labels={'y':'Probability of Success (%)', 'loan': 'Do people have a loan?'},
-                height=400)
+                height=400, title = 'Probability of success by loan status')
     return fig
 
 def house_status_distribution():
@@ -170,7 +170,7 @@ def house_prob():
     data['y'] = data['y']*100
     fig = px.bar(data, x='housing', y='y',
                 hover_data=data, color='housing',labels={'y':'Probability of Success (%)', 'housing': 'Housig Status'},
-                height=400)
+                height=400, title = 'Probability of success by housing status')
     return fig
 
 def prediction_pie_chart():
