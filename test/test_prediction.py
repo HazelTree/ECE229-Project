@@ -24,6 +24,7 @@ def test_make_predictions():
     '''
     Tests the make_predictions in prediction.py
     '''
+    os.chdir('..')
     assert type(pred.make_predictions()) == pd.DataFrame
     
     

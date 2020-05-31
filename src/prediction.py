@@ -45,7 +45,6 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     :return: Predictions on the test data with the original test features.
     :rtype: pandas.core.frame.DataFrame
     '''
-    os.chdir('..')
     
     # Import feature extraction code
     try:
