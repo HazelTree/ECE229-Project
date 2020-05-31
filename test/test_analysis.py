@@ -4,12 +4,22 @@ Test cases for analysis.py file where we perform preliminary analysis on the dat
 import pytest
 import pandas as pd
 import sys
+import os
 sys.path.insert(0, '..')
 import visualization.analysis as analysis
 from visualization.analysis import *
 
 csv_path = '../data/bank-additional-full.csv'
 my_analysis = Analysis(csv_path)
+marital_analysis = MaritalAnalysis(csv_path)
+feature = FeatureAnalysis(csv_path)
+
+@pytest.fixture(autouse=True)
+def teardown():
+    d = os.path.dirname(os.path.abspath('test_util.py'))
+    d = d.split('/')
+    if d[-1]!='test':
+       os.chdir('test')
 
 def test_get_column():
     '''
@@ -117,7 +127,7 @@ def test_filter_unknown_marital():
     Tests filter_unknown_marital() fucntion in analysis.py. The filter_unknown_marital() function is used to filter out columns that have marital status field set to unknown.
     The test_filter_unknown_marital() checks to ensure that the filtered values do not contain unknown marital status.
     '''
-    marital_analysis = MaritalAnalysis(csv_path)
+    
     k = marital_analysis.get_count('marital')['marital']
     status = ['married', 'divorced', 'single']
     assert all(i in status for i in k)==True
@@ -127,7 +137,7 @@ def test_get_feature_importance():
     Tests get_feature_importance() fucntion in analysis.py. The get_feature_importance() function is used get a dataframe of feature importance
     The test_get_feature_importance() checks to ensure that the returned values are a pandas DataFrame object.
     '''
-    feature = FeatureAnalysis(csv_path)
+   
     importance = feature.get_feature_importance()
     assert type(importance) == pd.DataFrame
     

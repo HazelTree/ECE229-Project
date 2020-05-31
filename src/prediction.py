@@ -12,6 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from xgboost import XGBClassifier
 
+
 def column_eliminator(data):
     '''
     Eliminate columns from the feature data
@@ -44,7 +45,6 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     :return: Predictions on the test data with the original test features.
     :rtype: pandas.core.frame.DataFrame
     '''
-
     
     # Import feature extraction code
     try:
@@ -55,8 +55,7 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
     
     # Initialize a FeatureExtractor object
     feature_extractor = feat.get_feature_extractor()
-    
-    # Get Preproccess Raw data (For Data Analysis)
+    # Get Preprocessed Raw data (For Data Analysis)
     preprocessed_raw = feature_extractor.load_preprocessed_data()
 
     # Get Train and Test data
@@ -166,6 +165,6 @@ def make_predictions(model = 'xgb', tune = False, save = False, wd = ''):
 def main():
     # change wd if necessary
     # os.chdir('C:/Users/iocak/Desktop/git/ECE229-Project/')
-    
     preds_with_features = make_predictions(model = 'xgb', tune = False, save = True, wd = '')
+    
     
