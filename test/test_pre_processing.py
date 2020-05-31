@@ -42,7 +42,7 @@ def test_re_map_column():
             if c in my_pre_processing.mappings.keys():
                 my_pre_processing.re_map_column(c)
     except:
-        print("some exception occured in re_map_column() method")
+        print("Exception in re_map_column() method")
 
 def test_validate_all():
     '''
@@ -51,7 +51,7 @@ def test_validate_all():
     try:
         my_pre_processing._validate_all()
     except:
-        print("some exception occured in _validate_all() method")
+        print("Exception in _validate_all() method")
 
 def test_validate():
     '''
@@ -62,4 +62,4 @@ def test_validate():
             if c in my_pre_processing.mappings.keys():
                 my_pre_processing._validate(c)
     except:
-        print("some exception occured in _validate() method")
+        print("Exception in _validate() method")
