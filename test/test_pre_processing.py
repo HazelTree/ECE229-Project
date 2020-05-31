@@ -3,6 +3,7 @@
 import pytest
 import pandas as pd
 import sys
+import os
 sys.path.insert(0, '..')
 from src.pre_processing import *
 import src.pre_processing as pre_processing
