@@ -10,6 +10,7 @@ def test_column_eliminator():
     '''
     Tests the column_eliminator in prediction.py
     '''
+    #os.chdir('..')
     feature_extraction = FeatureExtractor()
     X_train, X_test, y_train, y_test= feature_extraction.get_train_test_split(test_size = 0.2, random_state = 1)
     raw_col = X_train.shape[1]
