@@ -87,13 +87,6 @@ def test_get_count():
     assert all(isinstance(i,int) for i in p['y']) == True
 
 
-#def test_get_yes_no_count():
-#    p = my_analysis.get_yes_no_count('marital')
-#    assert type(p) == pd.DataFrame()
-#    assert all(i>=0 for i in p['y']) == True
-#    assert all(isinstance(i,int) for i in p['y'])
-
-
 def test_percentage_of_population():
     '''
     Tests percentage_of_population() fucntion in analysis.py. This function is used to compute the percentage of customers subscribing to the term deposit plan.
