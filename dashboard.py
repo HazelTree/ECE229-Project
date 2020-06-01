@@ -70,7 +70,7 @@ def marital_status_probab():
     fig = px.bar(data, x='marital', y='y',
                 hover_data=data, labels={'y':'Probability of Success (%)', 'marital': 'Marital Status'},
                 height=400, title = 'Probability of success by marital status')
-    fig.update_traces(marker_color='rgb(111,64,112)',
+    fig.update_traces(marker_color='#F8A19F', marker_line_color='rgb(111,64,112)',
     marker_line_width=1.5, opacity=0.8)
     return fig
 
@@ -89,7 +89,7 @@ def education_level_prob():
     fig = px.bar(data, x='education', y='y',
                 hover_data=data, labels={'y':'Probability of Success (%)', 'education': 'Education Level'},
                 height=400, title = 'Probability of success by education')
-    fig.update_traces(marker_color='rgb(111,64,112)',
+    fig.update_traces(marker_color='#F8A19F', marker_line_color='rgb(111,64,112)',
     marker_line_width=1.5, opacity=0.8)
     return fig
 
@@ -109,7 +109,7 @@ def job_prob():
     fig = px.bar(data, x='job', y='y',
                 hover_data=data, labels={'y':'Probability of Success (%)', 'job': 'Job'},
                 height=400, title = 'Probability of success by job')
-    fig.update_traces(marker_color='rgb(111,64,112)',
+    fig.update_traces(marker_color='#F8A19F', marker_line_color='rgb(111,64,112)',
     marker_line_width=1.5, opacity=0.8)
     return fig
 
@@ -132,8 +132,8 @@ def contact_prob():
     data['y'] = data['y']*100
     fig = px.bar(data, x='contact', y='y',
                 hover_data=data, labels={'y':'Probability of Success (%)', 'contact': 'Contact type'},
-                height=400, title = 'Probability of success by contact type')
-    fig.update_traces(marker_color='rgb(111,64,112)',
+                height=400, title = 'Probability of success by method of contact')
+    fig.update_traces(marker_color='#F8A19F', marker_line_color='rgb(111,64,112)',
     marker_line_width=1.5, opacity=0.8)
     return fig
 
@@ -157,7 +157,7 @@ def loan_prob():
     fig = px.bar(data, x='loan', y='y',
                 hover_data=data, labels={'y':'Probability of Success (%)', 'loan': 'Loan status'},
                 height=400, title = 'Probability of success by loan status')
-    fig.update_traces(marker_color='rgb(111,64,112)',
+    fig.update_traces(marker_color='#F8A19F', marker_line_color='rgb(111,64,112)',
     marker_line_width=1.5, opacity=0.8)
     return fig
 
@@ -181,7 +181,7 @@ def house_prob():
     fig = px.bar(data, x='housing', y='y',
                 hover_data=data, labels={'y':'Probability of Success (%)', 'housing': 'Housig Status'},
                 height=400, title = 'Probability of success by housing status')
-    fig.update_traces(marker_color='rgb(111,64,112)',
+    fig.update_traces(marker_color='#F8A19F', marker_line_color='rgb(111,64,112)',
     marker_line_width=1.5, opacity=0.8)
     return fig
 
@@ -249,7 +249,7 @@ def age_prob():
     fig = px.bar(data, x='age', y='y',
                 hover_data=data, labels={'y':'Number of Success (%)', 'age': 'Age'},
                 height=400, title = 'Success for different ages')
-    fig.update_traces(marker_color='rgb(111,64,112)',
+    fig.update_traces(marker_color='#F8A19F', marker_line_color='rgb(111,64,112)',
     marker_line_width=1.5, opacity=0.8)
     return fig
 
