@@ -3,8 +3,7 @@ import numpy as np
 import os
 import sys
 sys.path.append(os.getcwd() + '/..')
-os.chdir('..')
-import util
+
 
 #print(os.getcwd())
 @pytest.fixture(autouse=True)
@@ -16,7 +15,8 @@ def teardown():
 
 def test_util():
     ''' Tests util.py'''
-    
+    os.chdir('..')
+    import util
     p = util.dynamic_predict()
     assert type(p) == np.ndarray
     assert isinstance(p[0], (int,float))
