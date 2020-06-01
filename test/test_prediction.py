@@ -8,7 +8,7 @@ from src.feature_extraction import *
 
 def test_column_eliminator():
     '''
-    Tests the column_eliminator in prediction.py
+    Tests the column_eliminator() function in prediction.py
     '''
     #os.chdir('..')
     feature_extraction = FeatureExtractor()
@@ -23,7 +23,7 @@ def test_column_eliminator():
     
 def test_make_predictions():
     '''
-    Tests the make_predictions in prediction.py
+    Tests the make_predictions() function in prediction.py
     '''
     os.chdir('..')
     assert type(pred.make_predictions()) == pd.DataFrame
