@@ -6,7 +6,6 @@ sys.path.append(os.getcwd() + '/..')
 os.chdir('..')
 import util
 
-#print(os.getcwd())
 @pytest.fixture(autouse=True)
 def teardown():
     d = os.path.dirname(os.path.abspath('test_util.py'))
@@ -15,7 +14,9 @@ def teardown():
        os.chdir('test')
 
 def test_util():
-    ''' Tests util.py'''
+    '''
+    Tests util.py which has a dynamic_predict() function which is used to obtain predictions in a dynamic manner. 
+    '''
     
     p = util.dynamic_predict()
     assert type(p) == np.ndarray
