@@ -44,7 +44,7 @@ df.loc[df['poutcome'] == 'failure', 'poutcome'] = 'Failure'
 
 def marital_state_distribution():
     '''
-    This function gives the plot of distribution of people's marital status.
+    This function gives the plot of distribution of people based on marital status.
 
     Returns
     -------
@@ -64,6 +64,16 @@ def marital_state_distribution():
     return fig
  
 def marital_status_probab():
+    '''
+    This function gives the plot of probability of success based on people's marital status.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     marital_status_probab = my_analysis.get_probabilities('marital')
     data = marital_status_probab
     data['y'] = data['y']*100
@@ -75,6 +85,17 @@ def marital_status_probab():
     return fig
 
 def education_level_distribution():
+    '''
+    This function gives plot of distribution of people's education level.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
+    
     percents = my_analysis.percentage_of_population('education')
     v = my_analysis.get_count('education')['y']
     values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7]]
@@ -84,6 +105,16 @@ def education_level_distribution():
     return fig
 
 def education_level_prob():
+    '''
+    This function gives the plot of probability of success based on people's education level.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     data = my_analysis.get_probabilities('education')
     data['y'] = data['y']*100
     fig = px.bar(data, x='education', y='y',
@@ -94,6 +125,16 @@ def education_level_prob():
     return fig
 
 def income_level_distribution():
+    '''
+    This function gives plot of distribution of people's income level.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     percents = my_analysis.percentage_of_population('job')
     v = my_analysis.get_count('job')['y']
     values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11]]
@@ -103,6 +144,16 @@ def income_level_distribution():
     return fig
 
 def job_prob():
+    '''
+    This function gives the plot of probability of success based on people's job level.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     job_prob = my_analysis.get_probabilities('job')
     data = job_prob
     data['y'] = data['y']*100
@@ -114,6 +165,16 @@ def job_prob():
     return fig
 
 def contact_way_distribution():
+    '''
+    This function gives plot of distribution of people based on how they were contacted, i.e, cell phone or telephone.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     contact_count = my_analysis.get_count('contact')
     contact_success_count = my_analysis.get_success_count('contact')
     status=['cellular', 'telephone']
@@ -127,6 +188,16 @@ def contact_way_distribution():
     return fig
 
 def contact_prob():
+    '''
+    This function gives plot of probability of success based on how people were contacted, i.e, cell phone or telephone.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     contact_prob = my_analysis.get_probabilities('contact')
     data = contact_prob
     data['y'] = data['y']*100
@@ -138,6 +209,16 @@ def contact_prob():
     return fig
 
 def loan_status():
+    '''
+    This function gives the plot of distribution of people based on loan status.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     loan_count = my_analysis.get_count('loan')
     loan_success_count = my_analysis.get_success_count('loan')
     status=['yes', 'no', 'Info Not Available']
@@ -151,6 +232,16 @@ def loan_status():
     return fig
 
 def loan_prob():
+    '''
+    This function gives plot of probability of success based on people's loan status.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     loan_prob = my_analysis.get_probabilities('loan')
     data = loan_prob
     data['y'] = data['y']*100
@@ -162,6 +253,16 @@ def loan_prob():
     return fig
 
 def house_status_distribution():
+    '''
+      This function gives the plot of distribution of people based on housing status.
+
+      Returns
+      -------
+      plotly.graph_objs._figure.Figure
+          returns a interactive graph of marital status distribution.
+          
+          
+      '''
     housing_count = my_analysis.get_count('housing')
     housing_success_count = my_analysis.get_success_count('housing')
     status=['yes', 'no', 'Info Not Available']
@@ -175,6 +276,16 @@ def house_status_distribution():
     return fig
 
 def house_prob():
+    '''
+    This function gives plot of probability of success based on people's housing status.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     housing_prob = my_analysis.get_probabilities('housing')
     data = housing_prob
     data['y'] = data['y']*100
@@ -213,6 +324,16 @@ def predicted_prob_hist():
     return fig
 
 def age_distribution():
+    '''
+      This function gives the plot of distribution of people's responses based on age groups that they fall in.
+
+      Returns
+      -------
+      plotly.graph_objs._figure.Figure
+          returns a interactive graph of marital status distribution.
+          
+          
+      '''
     No = [x[0] for x in myList]
     Yes = [x[1] for x in myList]
     x = np.arange(len(labels)) 
@@ -245,6 +366,16 @@ def age_distribution():
     return fig
 
 def age_prob():
+    '''
+    This function gives the plot of distribution of people's responses based on age groups that they fall in.
+
+    Returns
+    -------
+    plotly.graph_objs._figure.Figure
+        returns a interactive graph of marital status distribution.
+        
+        
+    '''
     data = my_analysis.get_success_count("age")
     fig = px.bar(data, x='age', y='y',
                 hover_data=data, labels={'y':'Number of Success (%)', 'age': 'Age'},
