@@ -60,7 +60,7 @@ def marital_state_distribution():
     my_analysis.get_count('marital')
     explode = (0.2, 0, 0)
     fig = px.pie(percents,  values= values, names = labels, 
-                title = '% of people who are married, divorced and single')
+                title = '% of Population based on marital status')
     return fig
  
 def marital_status_probab():
@@ -68,8 +68,10 @@ def marital_status_probab():
     data = marital_status_probab
     data['y'] = data['y']*100
     fig = px.bar(data, x='marital', y='y',
-                hover_data=data, color='marital',labels={'y':'Probability of Success (%)', 'marital': 'Marital Status'},
+                hover_data=data, labels={'y':'Probability of Success (%)', 'marital': 'Marital Status'},
                 height=400, title = 'Probability of success by marital status')
+    fig.update_traces(marker_color='rgb(111,64,112)',
+    marker_line_width=1.5, opacity=0.8)
     return fig
 
 def education_level_distribution():
@@ -78,15 +80,17 @@ def education_level_distribution():
     values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7]]
     labels = ['basic_4y', 'basic_6y', 'basic_9y', 'high school', 'illiterate', 'professional course', 'university degree', 'unknown']
     fig = px.pie(percents,  values= values, names = labels, 
-                title = '% of population by education')
+                title = '% of Population based on education')
     return fig
 
 def education_level_prob():
     data = my_analysis.get_probabilities('education')
     data['y'] = data['y']*100
     fig = px.bar(data, x='education', y='y',
-                hover_data=data, color='education',labels={'y':'Probability of Success (%)', 'education': 'Education Level'},
+                hover_data=data, labels={'y':'Probability of Success (%)', 'education': 'Education Level'},
                 height=400, title = 'Probability of success by education')
+    fig.update_traces(marker_color='rgb(111,64,112)',
+    marker_line_width=1.5, opacity=0.8)
     return fig
 
 def income_level_distribution():
@@ -95,7 +99,7 @@ def income_level_distribution():
     values = [v[1], v[0], v[2], v[3], v[4], v[5], v[6], v[7], v[8], v[9], v[10], v[11]]
     labels = ['admin', 'blue-collar', 'entrepreneur', 'house maid', 'management', 'retired', 'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown']
     fig = px.pie(percents,  values= values, names = labels, 
-                title = '% of population by job')
+                title = '% of Population based on job')
     return fig
 
 def job_prob():
@@ -103,8 +107,10 @@ def job_prob():
     data = job_prob
     data['y'] = data['y']*100
     fig = px.bar(data, x='job', y='y',
-                hover_data=data, color='job',labels={'y':'Probability of Success (%)', 'job': 'Job'},
+                hover_data=data, labels={'y':'Probability of Success (%)', 'job': 'Job'},
                 height=400, title = 'Probability of success by job')
+    fig.update_traces(marker_color='rgb(111,64,112)',
+    marker_line_width=1.5, opacity=0.8)
     return fig
 
 def contact_way_distribution():
@@ -117,7 +123,7 @@ def contact_way_distribution():
         go.Bar(name='Success', x=status, y=contact_success_count['y'])
     ])
     # Change the bar mode
-    fig.update_layout(barmode='stack', xaxis_title="Contact type", yaxis_title="Number of people")
+    fig.update_layout(barmode='stack', xaxis_title="Contact type", yaxis_title="Number of people", title = 'Number of people contacted on cellular phone or telephone')
     return fig
 
 def contact_prob():
@@ -125,8 +131,10 @@ def contact_prob():
     data = contact_prob
     data['y'] = data['y']*100
     fig = px.bar(data, x='contact', y='y',
-                hover_data=data, color='contact',labels={'y':'Probability of Success (%)', 'contact': 'Contact type'},
-                height=400)
+                hover_data=data, labels={'y':'Probability of Success (%)', 'contact': 'Contact type'},
+                height=400, title = 'Probability of success by contact type')
+    fig.update_traces(marker_color='rgb(111,64,112)',
+    marker_line_width=1.5, opacity=0.8)
     return fig
 
 def loan_status():
@@ -139,7 +147,7 @@ def loan_status():
         go.Bar(name='Success', x=status, y=loan_success_count['y'])
     ])
     # Change the bar mode
-    fig.update_layout(barmode='stack', title = "Do people have a loan?", yaxis_title="Number of people", height=400)
+    fig.update_layout(barmode='stack', title = "Do people have a loan?", xaxis_title = "Loan status", yaxis_title="Number of people", height=400)
     return fig
 
 def loan_prob():
@@ -147,8 +155,10 @@ def loan_prob():
     data = loan_prob
     data['y'] = data['y']*100
     fig = px.bar(data, x='loan', y='y',
-                hover_data=data, color='loan',labels={'y':'Probability of Success (%)', 'loan': 'Do people have a loan?'},
+                hover_data=data, labels={'y':'Probability of Success (%)', 'loan': 'Loan status'},
                 height=400, title = 'Probability of success by loan status')
+    fig.update_traces(marker_color='rgb(111,64,112)',
+    marker_line_width=1.5, opacity=0.8)
     return fig
 
 def house_status_distribution():
@@ -161,7 +171,7 @@ def house_status_distribution():
         go.Bar(name='Success', x=status, y=housing_success_count['y'])
     ])
     # Change the bar mode
-    fig.update_layout(barmode='stack', xaxis_title="Housing Status", yaxis_title="Number of people", height=400)
+    fig.update_layout(barmode='stack', xaxis_title="Housing Status", yaxis_title="Number of people", height=400, title = 'Housing status of the population')
     return fig
 
 def house_prob():
@@ -169,8 +179,10 @@ def house_prob():
     data = housing_prob
     data['y'] = data['y']*100
     fig = px.bar(data, x='housing', y='y',
-                hover_data=data, color='housing',labels={'y':'Probability of Success (%)', 'housing': 'Housig Status'},
+                hover_data=data, labels={'y':'Probability of Success (%)', 'housing': 'Housig Status'},
                 height=400, title = 'Probability of success by housing status')
+    fig.update_traces(marker_color='rgb(111,64,112)',
+    marker_line_width=1.5, opacity=0.8)
     return fig
 
 def prediction_pie_chart():
@@ -221,7 +233,7 @@ def age_distribution():
     ))
 
     fig.update_layout(
-        title = 'COUNT OF YES/NO RESPONSE V/S AGE',
+        title = 'Count of yes/no response for different age groups',
         xaxis_title="Age Group",
         yaxis_title="Number of People",
         xaxis = dict(
@@ -236,7 +248,9 @@ def age_prob():
     data = my_analysis.get_success_count("age")
     fig = px.bar(data, x='age', y='y',
                 hover_data=data, labels={'y':'Number of Success (%)', 'age': 'Age'},
-                height=400)
+                height=400, title = 'Success for different ages')
+    fig.update_traces(marker_color='rgb(111,64,112)',
+    marker_line_width=1.5, opacity=0.8)
     return fig
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
