@@ -17,34 +17,34 @@ def teardown():
 
 def test_load_preprocessed_data():
     '''
-    Tests if the preprocessed data is loaded properly in a pandas dataframe.
+    Tests lead_preprocessed_data() function in feature_extraction.py.
     '''
     p = feature_extraction.load_preprocessed_data()
     assert type(p) == pd.DataFrame
     
 def test_data_scaler():
     '''
-    Tests the data_scaler() function.
+    Tests data_scaler() function in feature_extraction.py.
     '''
     assert type(feature_extraction.data_scaler(feature_extraction.load_preprocessed_data())) == pd.DataFrame
 
 def test_one_hot_encoder():
     '''
-    Tests the one_hot_encoder() function.
+    Tests the one_hot_encoder() function in feature_extraction.py.
     '''
     encoding = feature_extraction.data_scaler(feature_extraction.data_scaler(feature_extraction.load_preprocessed_data()))
     assert type(encoding) == pd.DataFrame
     
 def test_get_features():
     '''
-    Tests the get_features() function.
+    Tests the get_features() function in feature_extraction.py..
     '''
     features = feature_extraction.get_features()
     assert type(features) == pd.DataFrame
 
 def test_get_train_test_split():
     '''
-    Tests the get_train_test_split() function.
+    Tests the get_train_test_split() function in feature_extraction.py..
     '''
 
     X_train, X_test, y_train, y_test = feature_extraction.get_train_test_split()
@@ -57,7 +57,7 @@ def test_get_train_test_split():
 
 def test_get_feature_extractor():
     '''
-    Tests the get_feature_extractor() function
+    Tests the get_feature_extractor() function in feature_extraction.py.
     '''
 
     f = feature_ex.get_feature_extractor()

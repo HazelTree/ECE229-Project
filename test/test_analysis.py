@@ -1,6 +1,6 @@
-"""
+'''
 Test cases for analysis.py file where we perform preliminary analysis on the data.
-"""
+'''
 import pytest
 import pandas as pd
 import sys
