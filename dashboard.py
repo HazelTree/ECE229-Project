@@ -86,7 +86,7 @@ def marital_status_probab():
 
 def education_level_distribution():
     '''
-    This function gives plot of distribution of people's education level.
+    This function gives plot of distribution of people based on education level.
 
     Returns
     -------
@@ -126,7 +126,7 @@ def education_level_prob():
 
 def income_level_distribution():
     '''
-    This function gives plot of distribution of people's income level.
+    This function gives plot of distribution of people based on income level.
 
     Returns
     -------
