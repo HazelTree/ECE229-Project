@@ -21,7 +21,6 @@ feature_extractor = feat.get_feature_extractor()
 
 # Get Preproccess Raw data (For Data Analysis)
 preprocessed_raw = feature_extractor.load_preprocessed_data()
-
 # Get Train and Test data
 X_train_raw, X_test_raw, y_train, y_test = feature_extractor.get_train_test_split(test_size = 0.2, 
                                                                                   random_state = 1,
