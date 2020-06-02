@@ -84,6 +84,9 @@ DashBoard
 
 Test
 ==============
+.. automodule:: test.generate_coverage_report
+    :members:
+
 .. automodule:: test.test_analysis
     :members:
 
