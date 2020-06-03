@@ -13,7 +13,8 @@ import plotly.express as px
 from plotly.offline import plot
 import dash_table.FormatTemplate as FormatTemplate
 from dash_table.Format import Sign
-from sklearn.externals import joblib
+#from sklearn.externals import joblib
+import joblib
 from util import dynamic_predict
 
 from visualization import analysis  
@@ -386,6 +387,9 @@ def age_prob():
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
+#app.scripts.config.serve_locally = True
+
 app.config['suppress_callback_exceptions'] = True
 colors = {
     'background': '#111111',
@@ -771,6 +775,12 @@ def render_content(tab):
     elif tab == "tab-new":
         return layout_tab_new
 
+server = app.server
+
 if __name__ == '__main__':
     model = joblib.load("LR_prediction.joblib")
-    app.run_server(debug=True)
+    #app.run_server(debug=True)
+    #application.run_server(host='0.0.0.0', port=8050, debug=True)
+    #application.run(debug=True, port=8080)
+    #application.run_server(host='0.0.0.0')
+    app.run_server(host="0.0.0.0")
