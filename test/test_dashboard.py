@@ -16,7 +16,7 @@ def test_dashboard():
     Tests dashboard.py.
     '''
     os.chdir('..')
-    import dashboard
+    import application as dashboard
     try:
         assert type(dashboard.marital_state_distribution()) == plotly.graph_objs._figure.Figure
         assert type(dashboard.marital_status_probab()) == plotly.graph_objs._figure.Figure
