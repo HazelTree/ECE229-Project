@@ -584,6 +584,9 @@ age_vis = html.Div(children =[
 @app.callback(Output('vis-tabs-content', 'children'),
               [Input('vis-tabs', 'value')])
 def render_content(tab):
+    '''
+    Render manager dashboard tabs.
+    '''
     if tab == 'tab-3':
         return marital_status_vis
     elif tab == 'tab-4':
@@ -738,6 +741,9 @@ layout_tab_new = html.Div(children =[
      Input('euribor3m', 'value'),
      Input('job_transformed_no_income', 'value')])
 def show_success_probability(nr_employed, poutcome_success, emp_var_rate, pdays, cons_conf, euribor, no_income):
+    '''
+    Returns the probability for dynamic prediction dashboard.
+    '''
     if not nr_employed: 
         nr_employed = 0
     if not poutcome_success: 
@@ -764,6 +770,9 @@ def show_success_probability(nr_employed, poutcome_success, emp_var_rate, pdays,
 @app.callback(Output('tabs-content', 'children'),
               [Input('tabs', 'value')])
 def render_content(tab):
+    '''
+    Renders the dashboard.
+    '''
     if tab == 'tab-1':
         return layout_tab_1
     elif tab == 'tab-2':
