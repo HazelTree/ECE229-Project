@@ -1,20 +1,6 @@
 # **Bank Telecaller Decision Support System** 
 
-## Table of Content
 
-[Introduction](#introduction)
-
-[Methodology](#methodology)
-
-[Data source](#datasource)
-
-[Code](#code)
-
-[File Structure](#filestructure)
-
-[Require Packages](#requirepackages)
-
-[Contributors](#contributors)
 
 ## Introduction
 
@@ -22,7 +8,19 @@
 
 
 
+## Table of Content
 
+- [Methodology](#methodology)
+
+- [Data source](#datasource)
+
+- [Code](#code)
+
+- [File Structure](#filestructure)
+
+- [Require Packages](#requirepackages)
+
+- [Contributors](#contributors)
 
 ---
 
