@@ -1,5 +1,5 @@
 FROM python:3.8
-LABEL maintainer "Meinhard Ploner <iocak@ucsd.edu>"
+LABEL maintainer "iocak <iocak@ucsd.edu>"
 
 WORKDIR /code
 
