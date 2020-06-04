@@ -9,4 +9,4 @@ COPY ./ ./
 
 EXPOSE 8050
 
-CMD ["python", "./application.py"]
+CMD ["python", "./dashboard.py"]
