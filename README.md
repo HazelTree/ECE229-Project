@@ -130,8 +130,8 @@ Run pip install -r requirements.txt to set up your computer
 ---
 
 ## Contributors
-Chenhao Zhou
-Ismail Oack
-Xintong Zhou
-Amol Sakhale
+Chenhao Zhou,
+Ismail Oack,
+Xintong Zhou,
+Amol Sakhale,
 Harshita Krishna (h1krishn@ucsd.edu)
