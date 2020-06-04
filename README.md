@@ -54,9 +54,6 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 ---
 
 ## Directory Structure
-pre_processing.py
-├── analysis.py
-├── analysis-notebook.ipynb
 ```
 ├── dataset
 |   ├── bank-additional-full.csv
