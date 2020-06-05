@@ -9,6 +9,10 @@ The main purpose is to help bank manager and telecaller quickly target customers
 
 This project was pursued for fulfilment of the coursework ECE 229- Compuation data analysis and product development, offered by UC San Diego in Spring 2020. 
 
+## Documentation
+
+Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
+
 ## Table of Content
 
 - [Methodology](#methodology)
