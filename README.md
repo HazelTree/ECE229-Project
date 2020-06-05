@@ -1,6 +1,6 @@
 # **Bank Telecaller Decision Support System** 
 
-![dashboard_preview](/dashboar_shot.png)
+![dashboard_preview](/dashboard_shot.png)
 
 ## Introduction
 
@@ -15,12 +15,17 @@ This project was pursued for fulfilment of the coursework ECE 229- Compuation da
 
 ---
 
+## Documentation
+
+Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
+
+---
+
 ## Table of Content
 
 - [Methodology](#methodology)
 - [Data source](#datasource)
 - [Code](#code)
-- [Documentation](#documentation)
 - [File Structure](#filestructure)
 - [Require Packages](#requirepackages)
 - [Contributors](#contributors)
@@ -60,11 +65,8 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 - [feature_extraction.py](src/feature_extraction.py) : Feature Extractor
 ### Prediction
 - [prediction.py](src/prediction.py) : Prediction on test data
----
 
-## Documentation
 
-Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
 
 ---
 
