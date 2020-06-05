@@ -48,13 +48,13 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 
 ### Data Analysis
 
-- pre_processing.py : Data loading and processing
-- analysis.py : Analysis tools
+- [pre_processing.py](../master/src/pre_processing.py) : Data loading and processing
+- [analysis.py](../master/visualization/analysis.py) : Analysis tools
 
 ### Feature Extraction
-- feature_extraction.py : Feature Extractor
+- [feature_extraction.py](src/feature_extraction.py) : Feature Extractor
 ### Prediction
-- prediction.py : Prediction on test data
+- [prediction.py](src/prediction.py) : Prediction on test data
 ---
 
 ## Directory Structure
