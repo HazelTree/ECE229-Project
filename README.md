@@ -9,6 +9,8 @@ The main purpose is to help bank managers and telecallers quickly target custome
 
 This project was pursued for fulfilment of the coursework ECE 229- Compuation data analysis and product development, offered by UC San Diego in Spring 2020. 
 
+---
+
 ## Application website
 
 https://ece229.herokuapp.com/
