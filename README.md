@@ -1,6 +1,6 @@
 # **Bank Telecaller Decision Support System** 
 
-![dashboard_preview](/dashboar_shot.png)
+![dashboard_preview](/dashboard_shot.png)
 
 ## Introduction
 
