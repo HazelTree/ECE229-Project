@@ -38,9 +38,9 @@ Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
 
 ## Data source
 
-The UCI dataset can be found in the `./dataset/` directory. the`.txt` file is an introduction to the dataset.
+The UCI dataset can be found in the `./data/` directory. the`.txt` file is an introduction to the dataset.
 
-The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+Marketing `./dataset/`
+The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+Marketing `./data/`
 
 ---
 
