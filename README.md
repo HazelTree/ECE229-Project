@@ -11,7 +11,7 @@ This project was pursued for fulfilment of the coursework ECE 229- Compuation da
 
 ## Application website
 
-[Bank Teller Decision Support System](https://ece229.herokuapp.com/)
+https://ece229.herokuapp.com/
 
 ---
 
