@@ -1,23 +1,26 @@
 # **Bank Telecaller Decision Support System** 
 
-
+![dashboard_preview](/dashboar_shot.png)
 
 ## Introduction
 
 This project is a Bank Telecaller Decision Support System. 
-The main purpose is to help bank manager and telecaller quickly target customers who are more likely to subscribe to their product.
+The main purpose is to help bank managers and telecallers quickly target customers who are more likely to subscribe to their product.
 
 This project was pursued for fulfilment of the coursework ECE 229- Compuation data analysis and product development, offered by UC San Diego in Spring 2020. 
 
-## Documentation
+## Application website
 
-Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
+[Bank Teller Decision Support System](https://ece229.herokuapp.com/)
+
+---
 
 ## Table of Content
 
 - [Methodology](#methodology)
 - [Data source](#datasource)
 - [Code](#code)
+- [Documentation](#documentation)
 - [File Structure](#filestructure)
 - [Require Packages](#requirepackages)
 - [Contributors](#contributors)
@@ -26,11 +29,13 @@ Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
 
 ## Methodology
 
+1. Analyzed important categorical features derived from random forest model
 
+2. Developed statistical models to predict probability of success.
 
+   Models used: logistic regression, XGBoost, random forest
 
-
-
+3. Implemented live prediction function for potential clients
 
 
 
@@ -57,7 +62,14 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 - [prediction.py](src/prediction.py) : Prediction on test data
 ---
 
+## Documentation
+
+Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
+
+---
+
 ## Directory Structure
+
 ```
 ├── dataset
 |   ├── bank-additional-full.csv
