@@ -14,4 +14,3 @@ scikit-learn
 coverage
 pytest
 joblib
-gunicorn
