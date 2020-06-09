@@ -67,6 +67,8 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 ### Prediction
 - [prediction.py](src/prediction.py) : Prediction on the test data using Logistic Reg., XGBoost, and Random Forest models
 
+#### Dashboard
+- [dashboard.py](src/dashboard.py) : Dash app of the product, includes all plots and capabilities of the dashboard
 
 
 ---
