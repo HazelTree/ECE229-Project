@@ -136,7 +136,7 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 ```
 ---
 
-## Required Packages
+## Require Packages
 - Python >=3.7
 - dash
 - dash-renderer
@@ -155,7 +155,7 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 - pytest
 - joblib
 
-Run pip install -r requirements.txt to set up your computer 
+Run pip install -r requirements.txt to set up your computer. 
 
 ---
 
