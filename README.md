@@ -83,7 +83,7 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 
 ---
 
-## Directory Structure
+## File Structure
 
 ```
 ├── dataset
