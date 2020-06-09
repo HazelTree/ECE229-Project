@@ -161,19 +161,7 @@ Run pip install -r requirements.txt to set up your computer
 ---
 
 ## Contributors
-| <a href="https://github.com/HazelTree" target="_blank">**Chenhao Zhou**</a> 
-| <a href="https://github.com/iocak28" target="_blank">**Ismail Ocak**</a> 
-| <a href="https://github.com/ShikaZzz" target="_blank">**Xintong Zhou**</a> 
-| <a href="https://github.com/AmolSakhale" target="_blank">**Amol Sakhale**</a> 
-| <a href="https://github.com/harshita1804" target="_blank">**Harshita Krishna**</a> |
+| <a href="https://github.com/HazelTree" target="_blank">**Chenhao Zhou**</a> | <a href="https://github.com/iocak28" target="_blank">**Ismail Ocak**</a> | <a href="https://github.com/ShikaZzz" target="_blank">**Xintong Zhou**</a> | <a href="https://github.com/AmolSakhale" target="_blank">**Amol Sakhale**</a> | <a href="https://github.com/harshita1804" target="_blank">**Harshita Krishna**</a> |
 | :---: |:---:| :---:| :---:| :---:|
-| [![Chenhao Zhou](https://avatars1.githubusercontent.com/u/42596038?s=400)](https://github.com/HazelTree)    
-| [![Ismail Ocak](https://avatars3.githubusercontent.com/u/14804342?s=400)](https://github.com/iocak28) 
-| [![Xintong Zhou](https://avatars1.githubusercontent.com/u/56456781?s=400)](https://github.com/ShikaZzz)  
-| [![Amol Sakhale](https://avatars1.githubusercontent.com/u/10459987?s=400)](https://github.com/AmolSakhale)    
-| [![Harshita Krishna](https://avatars1.githubusercontent.com/u/42465912?s=400)](https://github.com/harshita1804) |
-| <a href="https://github.com/HazelTree" target="_blank">`github.com/HazelTree`</a> 
-| <a href="https://github.com/iocak28" target="_blank">`github.com/iocak28`</a> 
-| <a href="https://github.com/ShikaZzz" target="_blank">`github.com/ShikaZzz`</a> 
-| <a href="https://github.com/AmolSakhale" target="_blank">`github.com/AmolSakhale`</a>
-| <a href="https://github.com/harshita1804" target="_blank">`github.com/harshita1804`</a> |
+| [![Chenhao Zhou](https://avatars1.githubusercontent.com/u/42596038?s=400)](https://github.com/HazelTree) | [![Ismail Ocak](https://avatars3.githubusercontent.com/u/14804342?s=400)](https://github.com/iocak28) | [![Xintong Zhou](https://avatars1.githubusercontent.com/u/56456781?s=400)](https://github.com/ShikaZzz) | [![Amol Sakhale](https://avatars1.githubusercontent.com/u/10459987?s=400)](https://github.com/AmolSakhale) | [![Harshita Krishna](https://avatars1.githubusercontent.com/u/42465912?s=400)](https://github.com/harshita1804) |
+| <a href="https://github.com/HazelTree" target="_blank">`github.com/HazelTree`</a> | <a href="https://github.com/iocak28" target="_blank">`github.com/iocak28`</a> | <a href="https://github.com/ShikaZzz" target="_blank">`github.com/ShikaZzz`</a> | <a href="https://github.com/AmolSakhale" target="_blank">`github.com/AmolSakhale`</a> | <a href="https://github.com/harshita1804" target="_blank">`github.com/harshita1804`</a> |
