@@ -132,6 +132,7 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 ├── docker-compose.yml
 ├── requirements.txt
 ├── temp-plot.html
+├── test_coverage_report.pdf
 └──  util.py
 ```
 ---
