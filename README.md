@@ -4,8 +4,9 @@
 
 ## Introduction
 
-This project is a Bank Telecaller Decision Support System. 
-The main purpose is to help bank managers and telecallers to target customers who are more likely to subscribe to their product.
+This project aims to create a Bank Telecaller Decision Support System using interactive plots and machine learning. The main purpose is to help bank managers and telecallers to target customers who are more likely to purchase their product. 
+
+This Decision Support System maximizes the output of the marketing campaigns by creating accurate success predictions for the future customers. Using this product, telecallers can start calling the customers with high probability of success and maximize their campaign success. In this project, we achieved a 90% prediction accuracy using a XGBoost model.
 
 This project was pursued for fulfilment of the coursework ECE 229- Compuation data analysis and product development, offered by UC San Diego in Spring 2020. 
 
@@ -24,13 +25,25 @@ Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
 ---
 
 ## Table of Content
-
+- [User Stories](#userstories)
 - [Methodology](#methodology)
 - [Data source](#datasource)
 - [Code](#code)
 - [File Structure](#filestructure)
 - [Require Packages](#requirepackages)
 - [Contributors](#contributors)
+
+---
+
+## User Stories
+
+1- Upper management:
+   
+   - Understand potential success rate of campaign to optimize campaign investment
+   
+2- Telecaller:
+
+   - Able to call the customers who are more likely to purchase the product
 
 ---
 
@@ -148,8 +161,19 @@ Run pip install -r requirements.txt to set up your computer
 ---
 
 ## Contributors
-Chenhao Zhou,
-Ismail Oack,
-Xintong Zhou,
-Amol Sakhale,
-Harshita Krishna (h1krishn@ucsd.edu)
+| <a href="https://github.com/HazelTree" target="_blank">**Chenhao Zhou**</a> 
+| <a href="https://github.com/iocak28" target="_blank">**Ismail Ocak**</a> 
+| <a href="https://github.com/ShikaZzz" target="_blank">**Xintong Zhou**</a> 
+| <a href="https://github.com/AmolSakhale" target="_blank">**Amol Sakhale**</a> 
+| <a href="https://github.com/harshita1804" target="_blank">**Harshita Krishna**</a> |
+| :---: |:---:| :---:| :---:| :---:|
+| [![Chenhao Zhou](https://avatars1.githubusercontent.com/u/42596038?s=400)](https://github.com/HazelTree)    
+| [![Ismail Ocak](https://avatars3.githubusercontent.com/u/14804342?s=400)](https://github.com/iocak28) 
+| [![Xintong Zhou](https://avatars1.githubusercontent.com/u/56456781?s=400)](https://github.com/ShikaZzz)  
+| [![Amol Sakhale](https://avatars1.githubusercontent.com/u/10459987?s=400)](https://github.com/AmolSakhale)    
+| [![Harshita Krishna](https://avatars1.githubusercontent.com/u/42465912?s=400)](https://github.com/harshita1804) |
+| <a href="https://github.com/HazelTree" target="_blank">`github.com/HazelTree`</a> 
+| <a href="https://github.com/iocak28" target="_blank">`github.com/iocak28`</a> 
+| <a href="https://github.com/ShikaZzz" target="_blank">`github.com/ShikaZzz`</a> 
+| <a href="https://github.com/AmolSakhale" target="_blank">`github.com/AmolSakhale`</a>
+| <a href="https://github.com/harshita1804" target="_blank">`github.com/harshita1804`</a> |
