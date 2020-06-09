@@ -58,17 +58,14 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 ## Code
 
 ### Data Analysis
-
 - [pre_processing.py](../master/src/pre_processing.py) : Data loading, cleaning and pre-processing
 - [analysis.py](../master/visualization/analysis.py) : Analysis tools, plots and visualizations
-
 ### Feature Extraction
 - [feature_extraction.py](src/feature_extraction.py) : Feature extraction and preparing the data for ML models
 ### Prediction
 - [prediction.py](src/prediction.py) : Prediction on the test data using Logistic Reg., XGBoost, and Random Forest models
-
-#### Dashboard
-- [dashboard.py](src/dashboard.py) : Dash app of the product, includes all plots and capabilities of the dashboard
+### Dashboard
+- [dashboard.py](dashboard.py) : Dash app of the product, includes all plots and capabilities of the dashboard
 
 
 ---
