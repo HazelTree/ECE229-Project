@@ -124,8 +124,7 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 |    └── test_util.py
 ├── visualization
 |    ├── analysis.py
-|    ├── TODO
-|    └── TODO
+|    └── 229_plots.ipynb
 ├── Dockerfile
 ├── LR_prediction.joblib
 ├── README.md
