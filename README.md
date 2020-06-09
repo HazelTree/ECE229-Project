@@ -5,7 +5,7 @@
 ## Introduction
 
 This project is a Bank Telecaller Decision Support System. 
-The main purpose is to help bank managers and telecallers quickly target customers who are more likely to subscribe to their product.
+The main purpose is to help bank managers and telecallers to target customers who are more likely to subscribe to their product.
 
 This project was pursued for fulfilment of the coursework ECE 229- Compuation data analysis and product development, offered by UC San Diego in Spring 2020. 
 
@@ -36,14 +36,13 @@ Full documentation can be seen at https://hazeltree.github.io/ECE229-Project/
 
 ## Methodology
 
-1. Analyzed important categorical features derived from random forest model
+1. Analyzed important features, created insightful plots to be used in macro-level decision processes.
 
 2. Developed statistical models to predict probability of success.
 
-   Models used: logistic regression, XGBoost, random forest
+   Models used: Logistic Regression, XGBoost, Random Forest
 
-3. Implemented live prediction function for potential clients
-
+3. Created live prediction functionality to be used in both strategic and daily decisions.
 
 
 ----
@@ -60,13 +59,13 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 
 ### Data Analysis
 
-- [pre_processing.py](../master/src/pre_processing.py) : Data loading and processing
-- [analysis.py](../master/visualization/analysis.py) : Analysis tools
+- [pre_processing.py](../master/src/pre_processing.py) : Data loading, cleaning and pre-processing
+- [analysis.py](../master/visualization/analysis.py) : Analysis tools, plots and visualizations
 
 ### Feature Extraction
-- [feature_extraction.py](src/feature_extraction.py) : Feature Extractor
+- [feature_extraction.py](src/feature_extraction.py) : Feature extraction and preparing the data for ML models
 ### Prediction
-- [prediction.py](src/prediction.py) : Prediction on test data
+- [prediction.py](src/prediction.py) : Prediction on the test data using Logistic Reg., XGBoost, and Random Forest models
 
 
 
