@@ -79,6 +79,8 @@ The original data can be found at https://archive.ics.uci.edu/ml/datasets/Bank+M
 - [prediction.py](src/prediction.py) : Prediction on the test data using Logistic Reg., XGBoost, and Random Forest models
 ### Dashboard
 - [dashboard.py](dashboard.py) : Dash app of the product, includes all plots and capabilities of the dashboard
+### Test Coverage Report 
+- [generate_coverage_report.py](test/generate_coverage_report.py) : Generates Test Coverage Report. Developed and tested on MacOS 10.15.3 (running on any other OS may require minor changes to the script).
 
 
 ---
